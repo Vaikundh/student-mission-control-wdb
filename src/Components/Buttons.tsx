@@ -1,15 +1,13 @@
-import { Button } from "@chakra-ui/react";
+import { Button, propNames } from "@chakra-ui/react";
 
 interface ButtonProps {
-  color: string;
+  style: string;
   text: string;
 }
 
-const Buttons = () => {
+const Buttons = (props: ButtonProps) => {
   return (
-    <Button colorScheme="blue" variant="outline">
-      Test
-    </Button>
+      <Button>{props.text}</Button>
   );
 };
 
