@@ -1,19 +1,19 @@
 import React from "react";
 import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Buttons from "./Components/Buttons";
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <>
-      <ChakraProvider>
-        <Router>
-          <Routes>
-            <Route path="/" />
-          </Routes>
-        </Router>
-      </ChakraProvider>
-    </>
+    <ChakraProvider>
+      <Router>
+        <Routes>
+          <Route path="/" />
+          <Route path="/button" element={<Buttons />} />
+        </Routes>
+      </Router>
+    </ChakraProvider>
   );
 }
 
