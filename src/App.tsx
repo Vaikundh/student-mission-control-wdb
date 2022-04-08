@@ -11,7 +11,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" />
-          <Route path="/button" element={<Buttons style="" text="hi"/>} />
+          <Route path="/button" element={<Buttons text="Button"/>} />
+          <Route path="/button_sec" element={<Buttons text="Button" type="secondary"/>} />
+          <Route path="/button_dis" element={<Buttons text="Button" disabled={true}/>} />
         </Routes>
       </Router>
     </ChakraProvider>

@@ -1,14 +1,20 @@
-import { Button, propNames } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 interface ButtonProps {
-  style: string;
+  type: string;
   text: string;
+  disabled: boolean;
 }
 
 const Buttons = (props: ButtonProps) => {
   return (
-      <Button>{props.text}</Button>
+      <Button variant={props.type} isDisabled={props.disabled}>{props.text}</Button>
   );
 };
+
+Buttons.defaultProps = {
+  type: "primary",
+  disabled: false,
+}
 
 export default Buttons;
