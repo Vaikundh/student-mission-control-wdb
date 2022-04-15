@@ -3,13 +3,19 @@ import * as THREE from 'three';
 import Globe, { GlobeInstance } from 'globe.gl';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { Group } from 'three';
 import { useISSCoordinates } from '../utils/hooks';
 
+import scene from '../images/scene.glb';
+import STARFIELD_URL from '../images/img.jpg';
+import EARTH_TEXTURE_URL from '../images/earth-blue-marble.jpg';
+import CLOUDS_TEXTURE_URL from '../images/fair_clouds_4k.png';
+
+const CLOUDS_ALT = 0.05;
+const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
 const ISS_SIZE = 2.75;
 
 const Globey = () => {
-  const [ISSmodel, setISSmodel] = useState<Group | null>(null);
+  const [ISSmodel, setISSmodel] = useState<THREE.Group | null>(null);
   const globeWrapper = useRef<HTMLDivElement>(null);
   const world = useRef<GlobeInstance | null>();
 
@@ -19,7 +25,7 @@ const Globey = () => {
     const loader = new GLTFLoader();
 
     loader.load(
-      './scene.glb',
+      scene,
       function (gltf) {
         gltf.scene.scale.set(ISS_SIZE, ISS_SIZE, ISS_SIZE);
         setISSmodel(gltf.scene);
@@ -35,7 +41,7 @@ const Globey = () => {
     if (!ISSmodel || !globeWrapper.current) return;
 
     const currentWorld = Globe({ animateIn: false })(globeWrapper.current)
-      .globeImageUrl('./earth-blue-marble.jpg') // https://unpkg.com/three-globe@2.24.4/example/img/earth-blue-marble.jpg
+      .globeImageUrl(EARTH_TEXTURE_URL) // https://unpkg.com/three-globe@2.24.4/example/img/earth-blue-marble.jpg
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .objectLat('lat')
       .objectLng('lng')
@@ -60,11 +66,7 @@ const Globey = () => {
     controls.enableZoom = false;
 
     // Add clouds sphere
-    const CLOUDS_IMG_URL = './fair_clouds_4k.png'; // from https://github.com/turban/webgl-earth
-    const CLOUDS_ALT = 0.05;
-    const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
-
-    new THREE.TextureLoader().load(CLOUDS_IMG_URL, (cloudsTexture) => {
+    new THREE.TextureLoader().load(CLOUDS_TEXTURE_URL, (cloudsTexture) => {
       const clouds = new THREE.Mesh(
         new THREE.SphereBufferGeometry(
           currentWorld.getGlobeRadius() * (1 + CLOUDS_ALT),
@@ -87,7 +89,7 @@ const Globey = () => {
       new THREE.Mesh(
         new THREE.SphereGeometry(currentWorld.getGlobeRadius() * 10, 30, 30),
         new THREE.MeshBasicMaterial({
-          map: THREE.ImageUtils.loadTexture('./img.jpg'),
+          map: THREE.ImageUtils.loadTexture(STARFIELD_URL),
           side: THREE.BackSide,
         }),
       ),
