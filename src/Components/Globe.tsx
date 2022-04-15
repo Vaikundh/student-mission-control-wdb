@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import * as THREE from "three";
-import Globe, { GlobeInstance } from "globe.gl";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Group } from "three";
-import { useISSCoordinates } from "../utils/hooks";
+import React, { useEffect, useState, useRef } from 'react';
+import * as THREE from 'three';
+import Globe, { GlobeInstance } from 'globe.gl';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Group } from 'three';
+import { useISSCoordinates } from '../utils/hooks';
 
 const ISS_SIZE = 2.75;
 
@@ -19,7 +19,7 @@ const Globey = () => {
     const loader = new GLTFLoader();
 
     loader.load(
-      "./scene.glb",
+      './scene.glb',
       function (gltf) {
         gltf.scene.scale.set(ISS_SIZE, ISS_SIZE, ISS_SIZE);
         setISSmodel(gltf.scene);
@@ -27,7 +27,7 @@ const Globey = () => {
       undefined,
       function (error) {
         console.error(error);
-      }
+      },
     );
   }, []);
 
@@ -35,19 +35,22 @@ const Globey = () => {
     if (!ISSmodel || !globeWrapper.current) return;
 
     const currentWorld = Globe({ animateIn: false })(globeWrapper.current)
-      .globeImageUrl("./earth-blue-marble.jpg") // https://unpkg.com/three-globe@2.24.4/example/img/earth-blue-marble.jpg
-      .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
-      .objectLat("lat")
-      .objectLng("lng")
-      .objectAltitude("alt")
-      .objectLabel("name");
+      .globeImageUrl('./earth-blue-marble.jpg') // https://unpkg.com/three-globe@2.24.4/example/img/earth-blue-marble.jpg
+      .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+      .objectLat('lat')
+      .objectLng('lng')
+      .objectAltitude('alt')
+      .objectLabel('name');
 
     world.current = currentWorld;
 
     currentWorld
       .objectThreeObject(ISSmodel)
       .customThreeObjectUpdate((obj, d: any) =>
-        Object.assign(obj.position, currentWorld.getCoords(d.lat, d.lng, d.alt))
+        Object.assign(
+          obj.position,
+          currentWorld.getCoords(d.lat, d.lng, d.alt),
+        ),
       );
 
     // Auto-rotate
@@ -57,7 +60,7 @@ const Globey = () => {
     controls.enableZoom = false;
 
     // Add clouds sphere
-    const CLOUDS_IMG_URL = "./fair_clouds_4k.png"; // from https://github.com/turban/webgl-earth
+    const CLOUDS_IMG_URL = './fair_clouds_4k.png'; // from https://github.com/turban/webgl-earth
     const CLOUDS_ALT = 0.05;
     const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
 
@@ -66,9 +69,9 @@ const Globey = () => {
         new THREE.SphereBufferGeometry(
           currentWorld.getGlobeRadius() * (1 + CLOUDS_ALT),
           75,
-          75
+          75,
         ),
-        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true }),
       );
       currentWorld.scene().add(clouds);
 
@@ -84,17 +87,17 @@ const Globey = () => {
       new THREE.Mesh(
         new THREE.SphereGeometry(currentWorld.getGlobeRadius() * 10, 30, 30),
         new THREE.MeshBasicMaterial({
-          map: THREE.ImageUtils.loadTexture("./img.jpg"),
+          map: THREE.ImageUtils.loadTexture('./img.jpg'),
           side: THREE.BackSide,
-        })
-      )
+        }),
+      ),
     );
   }, [ISSmodel]);
 
   useEffect(() => {
     if (world.current == null) return;
 
-    console.log("Update!");
+    console.log('Update!');
 
     const objectData: object[] = [
       {

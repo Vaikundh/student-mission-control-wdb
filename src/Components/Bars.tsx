@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 
 interface BarProps {
     color: string;
