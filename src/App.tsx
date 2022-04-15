@@ -2,8 +2,11 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Buttons from "./Components/Buttons";
+import NavButton from "./Components/Navbar/NavButton";
+import Dropdown from "./Components/Navbar/Dropdown";
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from "./theme/theme"
+import NavBar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/button" element={<Buttons text="Button"/>} />
+          <Route path="/navbar" element={<NavBar />} />
           <Route path="/button_sec" element={<Buttons text="Button" type="secondary"/>} />
           <Route path="/button_dis" element={<Buttons text="Button" disabled={true}/>} />
         </Routes>
