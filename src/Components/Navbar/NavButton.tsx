@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react'
 import React, { SetStateAction } from 'react';
 
-// interface BarProps {
-//     color: string;
-// }
+interface NavButtonProps {
+    label: string;
+}
 
-const Bar = () => {
+const NavButton = (props: NavButtonProps) => {
     
     return (
         <Box
@@ -21,6 +21,7 @@ const Bar = () => {
             fontWeight='400'
             bg='#212121'
             color='#FFFFFF'
+            marginRight='10px'
             _hover={{
                 bg: '#001A33',
                 color: '#91D8F6',
@@ -30,7 +31,7 @@ const Bar = () => {
             _active={{
                 bg: '#212121',
                 transform: 'scale(0.98)',
-                borderColor: '#bec3c9',
+                borderBottomColor: '#91D8F6',
 
             }}
             _focus={{
@@ -38,11 +39,11 @@ const Bar = () => {
                 '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
             }}
             >
-            Button
+            {props.label}
         </Box>
     )
 }
 
 
- export default Bar;
+ export default NavButton;
 

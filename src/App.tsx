@@ -1,9 +1,12 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Buttons from './Components/Buttons';
-import { ChakraProvider } from '@chakra-ui/react';
-import theme from './theme/theme';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Buttons from "./Components/Buttons";
+import NavButton from "./Components/Navbar/NavButton";
+import Dropdown from "./Components/Navbar/Dropdown";
+import { ChakraProvider } from '@chakra-ui/react'
+import theme from "./theme/theme"
+import NavBar from "./Components/Navbar/Navbar";
 import Home from './pages/Home';
 
 function App() {

@@ -20,6 +20,17 @@ const Globey = () => {
   const world = useRef<GlobeInstance | null>();
 
   const issLocation = useISSCoordinates();
+  //ITs NOT WORKING :((((
+  // function resizeRendererToDisplaySize(renderer: { domElement: any; setSize: (arg0: any, arg1: any, arg2: boolean) => void; }) {
+  //   const canvas = renderer.domElement;
+  //   const width = canvas.clientWidth;
+  //   const height = canvas.clientHeight;
+  //   const needResize = canvas.width !== width || canvas.height !== height;
+  //   if (needResize) {
+  //     renderer.setSize(width, height, false);
+  //   }
+  //   return needResize;
+  // }
 
   useEffect(() => {
     const loader = new GLTFLoader();
@@ -77,6 +88,8 @@ const Globey = () => {
       );
       currentWorld.scene().add(clouds);
 
+      
+
       (function rotateClouds() {
         clouds.rotation.x += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
         clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
@@ -94,6 +107,11 @@ const Globey = () => {
         }),
       ),
     );
+    // if (resizeRendererToDisplaySize(currentWorld)) {
+    //   const canvas = renderer.domElement;
+    //   currentWorld.scene.aspect = canvas.clientWidth / canvas.clientHeight;
+    //   controls.updateProjectionMatrix();
+    // }
   }, [ISSmodel]);
 
   useEffect(() => {
