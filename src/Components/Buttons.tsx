@@ -10,6 +10,7 @@ interface ButtonProps {
 const Buttons = (props: ButtonProps) => {
   return (
       <Button variant={props.type} isDisabled={props.disabled}>{props.text}</Button>
+      
   );
 };
 
