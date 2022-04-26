@@ -8,11 +8,25 @@ import { useISSCoordinates } from '../utils/hooks';
 import scene from '../images/scene.glb';
 import STARFIELD_URL from '../images/img.jpg';
 import EARTH_TEXTURE_URL from '../images/earth-blue-marble.jpg';
+// import EARTH_SPECULAR_URL from '../images/2k_earth_specular_map.tif';
 import CLOUDS_TEXTURE_URL from '../images/fair_clouds_4k.png';
+import { Vector2 } from 'three';
 
 const CLOUDS_ALT = 0.05;
 const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
 const ISS_SIZE = 2.75;
+
+function resizeRendererToDisplaySize(renderer: any) {
+  const canvas = renderer.domElement;
+  const pixelRatio = window.devicePixelRatio;
+  const width = (canvas.clientWidth * pixelRatio) | 0;
+  const height = (canvas.clientHeight * pixelRatio) | 0;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
 
 const Globey = () => {
   const [ISSmodel, setISSmodel] = useState<THREE.Group | null>(null);
@@ -20,17 +34,6 @@ const Globey = () => {
   const world = useRef<GlobeInstance | null>();
 
   const issLocation = useISSCoordinates();
-  //ITs NOT WORKING :((((
-  // function resizeRendererToDisplaySize(renderer: { domElement: any; setSize: (arg0: any, arg1: any, arg2: boolean) => void; }) {
-  //   const canvas = renderer.domElement;
-  //   const width = canvas.clientWidth;
-  //   const height = canvas.clientHeight;
-  //   const needResize = canvas.width !== width || canvas.height !== height;
-  //   if (needResize) {
-  //     renderer.setSize(width, height, false);
-  //   }
-  //   return needResize;
-  // }
 
   useEffect(() => {
     const loader = new GLTFLoader();
@@ -50,14 +53,36 @@ const Globey = () => {
 
   useEffect(() => {
     if (!ISSmodel || !globeWrapper.current) return;
+    const globeWrapperElement = globeWrapper.current;
 
-    const currentWorld = Globe({ animateIn: false })(globeWrapper.current)
+    const currentWorld = Globe({ animateIn: false })(globeWrapperElement)
       .globeImageUrl(EARTH_TEXTURE_URL) // https://unpkg.com/three-globe@2.24.4/example/img/earth-blue-marble.jpg
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .objectLat('lat')
       .objectLng('lng')
       .objectAltitude('alt')
       .objectLabel('name');
+
+    let animationFrame: number | null = null;
+    const observer = new ResizeObserver(() => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const renderer = currentWorld.renderer();
+        const camera = currentWorld.camera() as any;
+        camera.aspect =
+          globeWrapperElement.clientWidth / globeWrapperElement.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(
+          globeWrapperElement.clientWidth,
+          globeWrapperElement.clientHeight,
+        );
+        renderer.setPixelRatio(window.devicePixelRatio);
+      });
+    });
+
+    observer.observe(globeWrapperElement);
+
+    console.log(currentWorld.globeMaterial);
 
     world.current = currentWorld;
 
@@ -88,8 +113,6 @@ const Globey = () => {
       );
       currentWorld.scene().add(clouds);
 
-      
-
       (function rotateClouds() {
         clouds.rotation.x += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
         clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
@@ -107,11 +130,10 @@ const Globey = () => {
         }),
       ),
     );
-    // if (resizeRendererToDisplaySize(currentWorld)) {
-    //   const canvas = renderer.domElement;
-    //   currentWorld.scene.aspect = canvas.clientWidth / canvas.clientHeight;
-    //   controls.updateProjectionMatrix();
-    // }
+
+    return () => {
+      observer.disconnect();
+    };
   }, [ISSmodel]);
 
   useEffect(() => {
