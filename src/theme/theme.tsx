@@ -10,16 +10,78 @@ const theme = extendTheme({
   components: {
     Text: {
       variants: {
-        Title: {
-          fontSize: '5xl',
-          color: '#fff',
+        H1: {
+          fontSize: '6xl',
+          fontStyle: 'normal',
+          fontWeight: '400',
           fontFamily: 'Allerta',
         },
-        subTitle: {
-          fontSize: '3xl',
-          color: '#C9D7DD',
+        H2: {
+          fontSize: '4xl',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Allerta',
+        },
+        H3: {
+          fontSize: '5xl',
+          fontStyle: 'normal',
+          fontWeight: '400',
           fontFamily: 'Sen',
         },
+        H4: {
+          fontSize: '2xl',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        },
+        H5: {
+          fontSize: 'xl',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        },
+        CalloutBold: {
+          fontSize: '18px',
+          fontStyle: 'normal',
+          fontWeight: '800',
+          fontFamily: 'Sen',
+        },
+        Callout: {
+          fontSize: '18px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        },
+        Body: {
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        },
+        BodySemibold: {
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontFamily: 'Sen',
+        },
+        BodyBold: {
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '800',
+          fontFamily: 'Sen',
+        },
+        Footnote: {
+          fontSize: '13px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        }
+        FootnoteBold: {
+          fontSize: '13px',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontFamily: 'Sen',
+        }
       },
     },
     Button: {
