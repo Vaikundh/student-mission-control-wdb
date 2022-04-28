@@ -8,25 +8,11 @@ import { useISSCoordinates } from '../utils/hooks';
 import scene from '../images/scene.glb';
 import STARFIELD_URL from '../images/img.jpg';
 import EARTH_TEXTURE_URL from '../images/earth-blue-marble.jpg';
-// import EARTH_SPECULAR_URL from '../images/2k_earth_specular_map.tif';
 import CLOUDS_TEXTURE_URL from '../images/fair_clouds_4k.png';
-import { Vector2 } from 'three';
 
 const CLOUDS_ALT = 0.05;
 const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
 const ISS_SIZE = 2.75;
-
-function resizeRendererToDisplaySize(renderer: any) {
-  const canvas = renderer.domElement;
-  const pixelRatio = window.devicePixelRatio;
-  const width = (canvas.clientWidth * pixelRatio) | 0;
-  const height = (canvas.clientHeight * pixelRatio) | 0;
-  const needResize = canvas.width !== width || canvas.height !== height;
-  if (needResize) {
-    renderer.setSize(width, height, false);
-  }
-  return needResize;
-}
 
 const Globey = () => {
   const [ISSmodel, setISSmodel] = useState<THREE.Group | null>(null);
@@ -154,7 +140,9 @@ const Globey = () => {
     world.current.objectsData(objectData);
   }, [issLocation]);
 
-  return <div id="globeViz" ref={globeWrapper}></div>;
+  return (
+    <div id="globeViz" style={{ overflow: 'hidden' }} ref={globeWrapper}></div>
+  );
 };
 
 export default Globey;
