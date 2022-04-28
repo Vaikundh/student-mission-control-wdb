@@ -30,30 +30,35 @@ const theme = extendTheme({
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Allerta',
+          color: '#fff',
         },
         H2: {
           fontSize: '4xl',
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Allerta',
+          color: '#fff',
         },
         H3: {
           fontSize: '5xl',
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Sen',
+          color: '#fff',
         },
         H4: {
           fontSize: '2xl',
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Sen',
+          color: '#C9D7DD',
         },
         H5: {
           fontSize: 'xl',
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Sen',
+          color: '#C9D7DD',
         },
         CalloutBold: {
           fontSize: '18px',
@@ -96,7 +101,7 @@ const theme = extendTheme({
           fontStyle: 'normal',
           fontWeight: '700',
           fontFamily: 'Sen',
-        }
+        },
       },
     },
     Button: {

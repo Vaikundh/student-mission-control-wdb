@@ -8,13 +8,13 @@ const Home = () => {
     <div className="App">
       <NavBar />
       <Globey />
-      <Text variant="Title" pos="fixed" left="18%" top="13%">
+      <Text variant="H2" fontSize={{ base: '24px', md: '40px', lg: '60px' }}pos="fixed" left="18%" top="13%">
         Student Mission Control
       </Text>
-      <Text variant="subTitle" pos="fixed" left="18%" top="23%">
+      <Text variant="H4" fontSize={{ base: '24px', md: '40px', lg: '40px' }} pos="fixed" left="18%" top="23%">
         by ISS National Lab and UC Berkeley
       </Text>
-      <Button variant="primary" pos="fixed" left="18%" top="30%">
+      <Button variant="primary" pos="fixed" left="18%" top="35%">
         Explore the Curriculum
       </Button>
     </div>
