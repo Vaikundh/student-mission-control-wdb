@@ -1,4 +1,5 @@
 import { Flex, Spacer, Text } from "@chakra-ui/react"
+import React from "react";
 import NavButton from "./NavButton";
 import Dropdown from "./Dropdown";
 

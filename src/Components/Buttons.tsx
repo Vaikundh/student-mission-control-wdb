@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/react";
+import React from "react";
 
 interface ButtonProps {
   type: string;
@@ -9,6 +10,7 @@ interface ButtonProps {
 const Buttons = (props: ButtonProps) => {
   return (
       <Button variant={props.type} isDisabled={props.disabled}>{props.text}</Button>
+      
   );
 };
 
