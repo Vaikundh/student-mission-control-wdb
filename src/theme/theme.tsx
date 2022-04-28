@@ -7,6 +7,21 @@ const theme = extendTheme({
     pressed: 'inset 2px 4px 4px rgba(0, 0, 0, 0.35)',
   },
 
+  colors: {
+    lightblue: '#91D8F6',
+    blue: '#22347F',
+    darkblue: '#001A33',
+    green: '#839E61',
+    darkgreen: '#01282B',
+    black: '#121212',
+    darkgrey: '#21212199',
+    white: '#FFFFFF',
+    lightgrey: '#C9D7DD',
+    yellow: '#836000',
+    red: '#612933',
+    orange: '#B7521F',
+  },
+
   components: {
     Text: {
       variants: {
@@ -75,7 +90,7 @@ const theme = extendTheme({
           fontStyle: 'normal',
           fontWeight: '400',
           fontFamily: 'Sen',
-        }
+        },
         FootnoteBold: {
           fontSize: '13px',
           fontStyle: 'normal',
