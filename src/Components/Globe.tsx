@@ -141,7 +141,7 @@ const Globey = () => {
 
     console.log('Update!');
 
-    const objectData: object[] = [
+    const objectData = [
       {
         lat: issLocation.lat,
         lng: issLocation.lon,
