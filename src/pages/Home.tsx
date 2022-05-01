@@ -1,7 +1,6 @@
 import React from 'react';
 import Globey from '../Components/Globe';
 import NavBar from '../Components/Navbar/Navbar';
-import Buttons from '../Components/Buttons';
 import { Button, Text } from '@chakra-ui/react';
 const Home = () => {
   return (

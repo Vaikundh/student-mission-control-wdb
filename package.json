@@ -31,10 +31,12 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.4",
+    "mdx-loader": "^3.0.2",
     "prettier": "^2.6.2"
   },
   "scripts": {
