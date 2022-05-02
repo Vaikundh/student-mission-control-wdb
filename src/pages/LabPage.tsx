@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
-import Dummy from '!babel-loader!mdx-loader!../curriculum/test.mdx';
+import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import NavBar from '../Components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../Components/ProgressBar';
@@ -12,14 +12,9 @@ interface LabPageProps {
 
 const LabPage = (props: LabPageProps) => {
   const navigate = useNavigate();
-
-  const getNumLabs = () => {
-    const requireComponent = require.context('../curriculum', false, /.mdx$/);
-    return requireComponent.keys().length;
-  };
   const [labs, setLabs] = useState(new Map<number, any[]>());
   const [lab, setLab] = useState<JSX.Element>(<Dummy></Dummy>);
-  const numLabs = getNumLabs();
+  const [numLabs, setNumLabs] = useState(0);
   const [labIndex, setLabIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -36,32 +31,37 @@ const LabPage = (props: LabPageProps) => {
     console.log('../curriculum/unit' + props.unit.toString());
     const file = '../curriculum/unit' + props.unit.toString();
     // ugh... can't import based on dynamic path.. path changes based on unit folder... what to dooooo
-    const requireComponent = require.context(`../curriculum`, false, /.mdx$/);
+    const requireComponent = require.context(`../curriculum`, true, /.mdx$/);
     console.log(requireComponent.keys());
 
+    let count = 0;
     requireComponent.keys().forEach((fileName: string) => {
-      const componentName = fileName
-        .replace(/^\.\//, '')
-        .replace(/\.\w+$/, '')
-        .replace(/mdx/, '');
+      if (fileName.slice(2, 7) === `unit${props.unit}`) {
+        count++;
+        const componentName = fileName
+          .replace(/^\.\//, '')
+          .replace(/\.\w+$/, '')
+          .replace(/mdx/, '');
 
-      import(
-        `!babel-loader!mdx-loader!../curriculum/${componentName}.mdx`
-      ).then((stuff) => {
-        const lab_stuff = [stuff.default, stuff.frontMatter];
-        const lab_index = stuff.frontMatter.index;
-        if (lab_index == 0) {
-          setLab(stuff.default);
-        }
-        labs.set(lab_index, lab_stuff);
-        console.log(labs);
-      });
+        import(
+          `!babel-loader!mdx-loader!../curriculum/${componentName}.mdx`
+        ).then((stuff) => {
+          const lab_stuff = [stuff.default, stuff.frontMatter];
+          const lab_index = stuff.frontMatter.index;
+          if (lab_index == 0) {
+            setLab(stuff.default);
+          }
+          labs.set(lab_index, lab_stuff);
+          console.log(labs);
+        });
+      }
     });
     setLabs(labs);
+    setNumLabs(count);
   };
 
   const routePrev = () => {
-    if (labIndex == 0) {
+    if (labIndex === 0) {
       return;
     }
 
@@ -73,7 +73,7 @@ const LabPage = (props: LabPageProps) => {
   };
 
   const routeNext = () => {
-    if (labIndex == numLabs - 1) {
+    if (labIndex === numLabs - 1) {
       return;
     }
 
