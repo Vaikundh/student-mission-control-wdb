@@ -97,6 +97,7 @@ const theme = extendTheme({
           fontFamily: 'Sen',
         },
         FootnoteBold: {
+          color : '#FFFFFF',
           fontSize: '13px',
           fontStyle: 'normal',
           fontWeight: '700',
@@ -173,7 +174,18 @@ const theme = extendTheme({
         },
       },
     },
+    Link : {
+      variants: {
+        footer : {
+          color: "#fff",
+          fontSize: '13px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        }
+    },
   },
+}
 });
 
 export default theme;
