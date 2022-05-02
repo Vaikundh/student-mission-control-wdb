@@ -7,7 +7,7 @@ import ProgressBar from '../Components/ProgressBar';
 import { Button } from '@chakra-ui/react';
 
 interface LabPageProps {
-  unit: number;
+  lab: number;
 }
 
 const LabPage = (props: LabPageProps) => {
@@ -28,15 +28,15 @@ const LabPage = (props: LabPageProps) => {
   }, [labIndex]);
 
   const getLabs = () => {
-    console.log('../curriculum/unit' + props.unit.toString());
-    const file = '../curriculum/unit' + props.unit.toString();
-    // ugh... can't import based on dynamic path.. path changes based on unit folder... what to dooooo
+    console.log('../curriculum/lab' + props.lab.toString());
+    const file = '../curriculum/lab' + props.lab.toString();
+    // ugh... can't import based on dynamic path.. path changes based on lab folder... what to dooooo
     const requireComponent = require.context(`../curriculum`, true, /.mdx$/);
     console.log(requireComponent.keys());
 
     let count = 0;
     requireComponent.keys().forEach((fileName: string) => {
-      if (fileName.slice(2, 7) === `unit${props.unit}`) {
+      if (fileName.slice(2, 6) === `lab${props.lab}`) {
         count++;
         const componentName = fileName
           .replace(/^\.\//, '')
