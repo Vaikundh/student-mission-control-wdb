@@ -23,7 +23,7 @@ function App() {
             path="/button_dis"
             element={<Button disabled={true}>Disabled button</Button>}
           />
-          <Route path="/lab" element={<LabPage />}></Route>
+          <Route path="/lab" element={<LabPage unit={1} />}></Route>
         </Routes>
       </Router>
     </ChakraProvider>

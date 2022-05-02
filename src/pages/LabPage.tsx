@@ -1,91 +1,87 @@
 import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
-import Content, {
-  frontMatter,
-} from '!babel-loader!mdx-loader!../curriculum/test.mdx';
+import Dummy from '!babel-loader!mdx-loader!../curriculum/test.mdx';
 import NavBar from '../Components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../Components/ProgressBar';
 import { Button } from '@chakra-ui/react';
-// import list from '../curriculum/getlabs';
 
-const LabPage = () => {
+interface LabPageProps {
+  unit: number;
+}
+
+const LabPage = (props: LabPageProps) => {
+  const navigate = useNavigate();
+
   const getNumLabs = () => {
     const requireComponent = require.context('../curriculum', false, /.mdx$/);
     return requireComponent.keys().length;
   };
-
-  const [lab, setLab] = useState<JSX.Element>(<Content></Content>);
-  const [frontM, setFrontM] = useState<any>(frontMatter);
-  const [numLabs, setNumLabs] = useState<number>(getNumLabs());
+  const [labs, setLabs] = useState(new Map<number, any[]>());
+  const [lab, setLab] = useState<JSX.Element>(<Dummy></Dummy>);
+  const numLabs = getNumLabs();
   const [labIndex, setLabIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const navigate = useNavigate();
-  const list: any[] = [];
 
   useEffect(() => {
-    // const requireComponent = require.context('../curriculum', false, /.mdx$/);
-    // console.log(requireComponent.keys())
-
-    // requireComponent.keys().forEach((fileName: string) => {
-    //   const componentName = fileName
-    //     .replace(/^\.\//, '')
-    //     .replace(/\.\w+$/, '')
-    //     .replace(/mdx/, '');
-
-    //   const file = '../curriculum/' + componentName + '.mdx'
-    //   console.log(file)
-    //   const componentConfig = requireComponent(fileName);
-
-    //   const CompTag = componentConfig.default;
-
-    //   list.push({
-    //     label: componentName,
-    //     comp: <CompTag />,
-    //     frontM: componentConfig.frontMatter,
-    //   });
-
-    //   console.log('hiii', list);
-    // });
-    // getLabs().then(() => {
-    //   console.log(list)
-    //   const e = list[0].default
-    //   console.log(list[0].default)
-    //   console.log(<Content></Content>)
-    // })
-    console.log(numLabs);
+    getLabs();
   }, []);
 
   useEffect(() => {
-    // action on update of movies
-    setProgress((labIndex / (numLabs - 1)) * 100)
-}, [labIndex]);
+    // update progress whenever labIndex changes
+    setProgress((labIndex / (numLabs - 1)) * 100);
+  }, [labIndex]);
 
-  const routePrev = async () => {
-    if (!frontM.prev) {
+  const getLabs = () => {
+    console.log('../curriculum/unit' + props.unit.toString());
+    const file = '../curriculum/unit' + props.unit.toString();
+    // ugh... can't import based on dynamic path.. path changes based on unit folder... what to dooooo
+    const requireComponent = require.context(`../curriculum`, false, /.mdx$/);
+    console.log(requireComponent.keys());
+
+    requireComponent.keys().forEach((fileName: string) => {
+      const componentName = fileName
+        .replace(/^\.\//, '')
+        .replace(/\.\w+$/, '')
+        .replace(/mdx/, '');
+
+      import(
+        `!babel-loader!mdx-loader!../curriculum/${componentName}.mdx`
+      ).then((stuff) => {
+        const lab_stuff = [stuff.default, stuff.frontMatter];
+        const lab_index = stuff.frontMatter.index;
+        if (lab_index == 0) {
+          setLab(stuff.default);
+        }
+        labs.set(lab_index, lab_stuff);
+        console.log(labs);
+      });
+    });
+    setLabs(labs);
+  };
+
+  const routePrev = () => {
+    if (labIndex == 0) {
       return;
     }
-    const stuff = await import(
-      `!babel-loader!mdx-loader!../curriculum/${frontM.prev}.mdx`
-    );
-    setLab(stuff.default);
-    setFrontM(stuff.frontMatter);
-    setLabIndex(labIndex - 1);
-    setProgress((labIndex / (numLabs - 1)) * 100);
+
+    const next_lab = labs.get(labIndex - 1);
+    if (next_lab) {
+      setLab(next_lab[0]);
+      setLabIndex(labIndex - 1);
+    }
   };
 
   const routeNext = () => {
-    if (!frontM.next) {
+    if (labIndex == numLabs - 1) {
       return;
     }
 
-    import(`!babel-loader!mdx-loader!../curriculum/${frontM.next}.mdx`).then(
-      (stuff) => {
-        setLab(stuff.default);
-        setFrontM(stuff.frontMatter);
-        setLabIndex(labIndex + 1)
-      },
-    );
+    const next_lab = labs.get(labIndex + 1);
+    if (next_lab) {
+      setLab(next_lab[0]);
+      setLabIndex(labIndex + 1);
+    }
   };
 
   return (
@@ -94,8 +90,17 @@ const LabPage = () => {
       <ProgressBar progress={progress} />
       {labIndex + 1} / {numLabs}
       <div className="default">{lab}</div>
-      <Button variant="secondary" onClick={routePrev}>Back</Button>
-      <Button onClick={routeNext}>Next</Button>
+      <Button
+        variant="secondary"
+        disabled={labIndex == 0 ? true : false}
+        onClick={routePrev}>
+        Back
+      </Button>
+      <Button
+        onClick={routeNext}
+        disabled={labIndex == numLabs - 1 ? true : false}>
+        Next
+      </Button>
     </>
   );
 };
