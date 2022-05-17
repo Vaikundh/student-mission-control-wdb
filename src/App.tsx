@@ -1,23 +1,29 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Buttons from "./Components/Buttons";
-import NavButton from "./Components/Navbar/NavButton";
-import Dropdown from "./Components/Navbar/Dropdown";
-import { ChakraProvider } from '@chakra-ui/react'
-import theme from "./theme/theme"
-import NavBar from "./Components/Navbar/Navbar";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Buttons from './Components/Buttons';
+import NavButton from './Components/Navbar/NavButton';
+import Dropdown from './Components/Navbar/Dropdown';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from './theme/theme';
+import NavBar from './Components/Navbar/Navbar';
+import Home from './pages/Home';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" />
-          <Route path="/button" element={<Buttons text="Button"/>} />
-          <Route path="/navbar" element={<NavBar />} />
-          <Route path="/button_sec" element={<Buttons text="Button" type="secondary"/>} />
-          <Route path="/button_dis" element={<Buttons text="Button" disabled={true}/>} />
+          <Route path="/" element={<Home />}>
+            <Route path="/button" element={<Buttons text="Button" />} />
+            <Route
+              path="/button_sec"
+              element={<Buttons text="Button" type="secondary" />}
+            />
+            <Route
+              path="/button_dis"
+              element={<Buttons text="Button" disabled={true} />}
+            />
+          </Route>
         </Routes>
       </Router>
     </ChakraProvider>

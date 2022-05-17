@@ -1,6 +1,6 @@
 import { Menu, MenuList, MenuItem, MenuButton, Button, Divider } from '@chakra-ui/react'
 import { TriangleDownIcon } from '@chakra-ui/icons'
-import { SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 
 interface DropdownProps {
     label: string;
