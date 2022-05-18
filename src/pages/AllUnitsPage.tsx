@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/Navbar/Navbar';
-import { Button, Heading } from '@chakra-ui/react';
+import { Button, Heading, Box, VStack, Flex } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
 
 const AllUnitsPage = () => {
     const navigate = useNavigate();
@@ -35,17 +36,24 @@ const AllUnitsPage = () => {
     return (
       <>
         <NavBar />
-        <Heading>Units</Heading>
-        { unitsArr.map((val) => {
-          return (
-            <>
-            <Button onClick={() => nav(val)}>
-              Unit { val }
-            </Button>
-            </>
-          )
-        })
-        }
+        <Heading mt='5%' ml='15%'>Student Curriculum</Heading>
+        <Flex direction="row" justifyContent='center' h='66vh'>
+            { unitsArr.map((val) => {
+            return (
+                <>
+                <Box mt='2%' bg='black' w='20%' h='380px' justifyContent='center' borderRadius='lg' mr="5%">
+                    <Flex justifyContent='center'>
+                        <Button mt='280px' fontSize='22' w='267px' h='78px' onClick={() => nav(val)} >
+                            Unit { val }
+                        </Button>
+                    </Flex>
+                </Box>
+                </>
+            )
+            })
+            }
+        </Flex>
+        <Footer />
       </>
     );
   };

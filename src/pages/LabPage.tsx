@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import NavBar from '../Components/Navbar/Navbar';
-import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../Components/ProgressBar';
 import { Button } from '@chakra-ui/react';
 

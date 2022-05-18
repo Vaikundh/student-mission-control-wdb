@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/Navbar/Navbar';
-import { Button, Heading } from '@chakra-ui/react';
+import { Button, Heading, Flex, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
 
 interface UnitPageProps {
   unit: number;
@@ -39,17 +40,24 @@ const UnitPage = (props: UnitPageProps) => {
   return (
     <>
       <NavBar />
-      <Heading>Unit {props.unit}</Heading>
-      { labsArr.map((val) => {
-        return (
-          <>
-          <Button onClick={() => nav(val)}>
-            Lab { val }
-          </Button>
-          </>
-        )
-      })
-      }
+      <Heading mt='5%' ml='15%'>Unit {props.unit}</Heading>
+      <Flex direction="row" justifyContent='center' h='66vh'>
+          { labsArr.map((val) => {
+          return (
+              <>
+              <Box mt='2%' bg='black' w='20%' h='380px' justifyContent='center' borderRadius='lg' mr="5%">
+                  <Flex justifyContent='center'>
+                      <Button mt='280px' fontSize='22' w='267px' h='78px' onClick={() => nav(val)} >
+                      Lab { val }
+                      </Button>
+                  </Flex>
+              </Box>
+              </>
+          )
+          })
+          }
+      </Flex>
+      <Footer />
     </>
   );
 };
