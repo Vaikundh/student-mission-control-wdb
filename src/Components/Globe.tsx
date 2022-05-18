@@ -14,6 +14,18 @@ const CLOUDS_ALT = 0.05;
 const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
 const ISS_SIZE = 2.75;
 
+function resizeRendererToDisplaySize(renderer: any) {
+  const canvas = renderer.domElement;
+  const pixelRatio = window.devicePixelRatio;
+  const width = (canvas.clientWidth * pixelRatio) | 0;
+  const height = (canvas.clientHeight * pixelRatio) | 0;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+
 const Globey = () => {
   const [ISSmodel, setISSmodel] = useState<THREE.Group | null>(null);
   const globeWrapper = useRef<HTMLDivElement>(null);
@@ -127,7 +139,7 @@ const Globey = () => {
 
     console.log('Update!');
 
-    const objectData: object[] = [
+    const objectData = [
       {
         lat: issLocation.lat,
         lng: issLocation.lon,
