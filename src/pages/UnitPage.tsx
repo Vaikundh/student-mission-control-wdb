@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/Navbar/Navbar';
 import { Button, Heading } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 interface UnitPageProps {
   unit: number;
 }
 
 const UnitPage = (props: UnitPageProps) => {
+  const navigate = useNavigate();
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
 
@@ -15,7 +17,6 @@ const UnitPage = (props: UnitPageProps) => {
   }, []);
 
   const getNumLabs = () => {
-    // ugh... can't import based on dynamic path.. path changes based on lab folder... what to dooooo
     const requireComponent = require.context('../curriculum', true, /.mdx$/);
     let count = 0;
     let a: number[] = new Array(numLabs);
@@ -30,6 +31,11 @@ const UnitPage = (props: UnitPageProps) => {
     setLabsArr(a);
   };
 
+  const nav = (lab : number) => {
+    const s = '/unit' + props.unit + '/lab' + lab;
+    navigate(s);
+}
+
   return (
     <>
       <NavBar />
@@ -37,7 +43,7 @@ const UnitPage = (props: UnitPageProps) => {
       { labsArr.map((val) => {
         return (
           <>
-          <Button>
+          <Button onClick={() => nav(val)}>
             Lab { val }
           </Button>
           </>

@@ -26,8 +26,9 @@ function App() {
             element={<Button disabled={true}>Disabled button</Button>}
           />
           <Route path="/units" element={<AllUnitsPage />}></Route>
-          <Route path="/lab1" element={<LabPage lab={1} />}></Route>
-          <Route path="/lab2" element={<LabPage lab={2} />}></Route>
+          <Route path="/unit1/lab1" element={<LabPage unit={1} lab={1} />}></Route>
+          <Route path="/unit1/lab2" element={<LabPage unit={1} lab={2} />}></Route>
+          <Route path="/unit2/lab1" element={<LabPage unit={2} lab={1} />}></Route>
           <Route path="/unit1" element={<UnitPage unit={1}/>}></Route>
           <Route path="/unit2" element={<UnitPage unit={2}/>}></Route>
         </Routes>
