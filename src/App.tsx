@@ -5,6 +5,8 @@ import { Button, ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import Home from './pages/Home';
 import LabPage from './pages/LabPage';
+import UnitPage from './pages/UnitPage';
+import AllUnitsPage from './pages/AllUnitsPage';
 
 
 function App() {
@@ -23,8 +25,11 @@ function App() {
             path="/button_dis"
             element={<Button disabled={true}>Disabled button</Button>}
           />
+          <Route path="/units" element={<AllUnitsPage />}></Route>
           <Route path="/lab1" element={<LabPage lab={1} />}></Route>
           <Route path="/lab2" element={<LabPage lab={2} />}></Route>
+          <Route path="/unit1" element={<UnitPage unit={1}/>}></Route>
+          <Route path="/unit2" element={<UnitPage unit={2}/>}></Route>
         </Routes>
       </Router>
     </ChakraProvider>
