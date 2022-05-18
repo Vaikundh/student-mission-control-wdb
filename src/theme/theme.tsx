@@ -9,18 +9,18 @@ const theme = extendTheme({
 
   colors: {
     // commented out because this is breaking some chakra components
-    // lightblue: '#91D8F6',
-    // blue: '#22347F',
-    // darkblue: '#001A33',
-    // green: '#839E61',
-    // darkgreen: '#01282B',
-    // black: '#121212',
-    // darkgrey: '#21212199',
-    // white: '#FFFFFF',
-    // lightgrey: '#C9D7DD',
-    // yellow: '#836000',
-    // red: '#612933',
-    // orange: '#B7521F',
+    smclightblue: '#91D8F6',
+    smcblue: '#22347F',
+    smcdarkblue: '#001A33',
+    smcgreen: '#839E61',
+    smcdarkgreen: '#01282B',
+    smcblack: '#121212',
+    smcdarkgrey: '#212121',
+    smcwhite: '#FFFFFF',
+    smclightgrey: '#C9D7DD',
+    smcyellow: '#836000',
+    smcred: '#612933',
+    smcorange: '#B7521F',
   },
 
   components: {
@@ -107,9 +107,6 @@ const theme = extendTheme({
       },
     },
     Button: {
-      defaultProps: {
-        variant: 'primary',
-      },
       baseStyle: {
         borderRadius: '10px',
         bg: '#121212',
