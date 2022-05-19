@@ -2,6 +2,7 @@ import { Flex, Spacer, Text, Image } from "@chakra-ui/react"
 import React from "react";
 import NavButton from "./NavButton";
 import Dropdown from "./Dropdown";
+import Logo from "../../Components/Logo";
 
 const NavBar = () => {
     return (
@@ -11,7 +12,9 @@ const NavBar = () => {
                 bg="smcdarkgrey"
                 paddingRight="45px"
                 >
-                <Image margin="15px" src='/images/SMC.svg'/>
+
+                <Logo/>
+
                 <Spacer /> 
                 <Flex>
                     <Dropdown label="Curriculum" menu1="Home" menu2="For Students" menu3="For Teachers" w='145px'></Dropdown>
