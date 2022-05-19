@@ -11,7 +11,7 @@ const NavButton = (props: NavButtonProps) => {
         <Box
             as='button'
             width='120px'
-            height='50px'
+            height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
             transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
             borderBottomWidth='3px'
             borderBottomColor='#103F53'
@@ -19,19 +19,19 @@ const NavButton = (props: NavButtonProps) => {
             borderRadius='0px'
             fontSize='18px'
             fontWeight='400'
-            bg='#212121'
-            color='#FFFFFF'
+            bg='smcdarkgrey'
+            color='smcwhite'
             marginRight='10px'
             _hover={{
-                bg: '#001A33',
-                color: '#91D8F6',
-                borderBottomColor: '#91D8F6',
+                bg: 'smcdarkblue',
+                color: 'smclightblue',
+                borderBottomColor: 'smclightblue',
                 fontWeight:'700',
             }}
             _active={{
-                bg: '#212121',
+                bg: 'smcdarkgrey',
                 transform: 'scale(0.98)',
-                borderBottomColor: '#91D8F6',
+                borderBottomColor: 'smclightblue',
 
             }}
             _focus={{
