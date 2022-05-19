@@ -20,16 +20,18 @@ const Dropdown = (props: DropdownProps) => {
                 width='120px'
                 height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                borderBottomWidth='3px'
-                borderBottomColor='#103F53'
-                px='8px'
-                borderRadius='0px'
-                fontSize='18px'
-                fontWeight='400'
+
                 bg='smcdarkgrey'
                 color='smcwhite'
-                marginRight='10px'
-                _hover={{
+                borderBottomWidth='3px'
+                borderBottomColor='#103f53'
+                height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
+                borderRadius="0px"
+                fontSize='18px'
+                fontWeight='400'
+                mr="10px"
+                _hover={{ 
+
                     bg: 'smcdarkblue',
                     color: 'smclightblue',
                     borderBottomColor: 'smclightblue',
@@ -42,8 +44,8 @@ const Dropdown = (props: DropdownProps) => {
 
                 }}
                 _focus={{
-                    boxShadow:
-                    '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+                    // boxShadow:
+                    // '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
                 }}
             
                 >
