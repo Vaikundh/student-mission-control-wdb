@@ -1,17 +1,20 @@
-import { Flex, Spacer, Text } from "@chakra-ui/react"
+import { Flex, Spacer, Text, Image } from "@chakra-ui/react"
 import React from "react";
 import NavButton from "./NavButton";
 import Dropdown from "./Dropdown";
+import Logo from "../../Components/Logo";
 
 const NavBar = () => {
     return (
         <>
             <Flex
-                height="50px"
-                bg="#212121"
+                height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
+                bg="smcdarkgrey"
                 paddingRight="45px"
                 >
-                <Text color='white'>SMC</Text>
+
+                <Logo/>
+
                 <Spacer /> 
                 <Flex>
                     <Dropdown label="Curriculum" menu1="Home" menu2="For Students" menu3="For Teachers" w='145px'></Dropdown>
