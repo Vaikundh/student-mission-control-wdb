@@ -61,7 +61,7 @@ const ISS = [{
   const Berkeley = [{
     "pic": "dan_garcia",
     "name": "Dan Garcia",
-    "role": "Co-Principal Investigator, Teaching Professor @ Berkeley",
+    "role": "Principal Investigator, Teaching Professor @ Berkeley",
     "contact": "sthorstensen@issnationallab.org"
   }, {
     "pic": "lauren_mock",
