@@ -173,6 +173,7 @@ const theme = extendTheme({
             bg: '#4D4D4D',
           },
         },
+
       },
     },
     Link : {
