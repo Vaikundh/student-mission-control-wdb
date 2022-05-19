@@ -141,7 +141,7 @@ const AboutTeam = () => {
   return (
     <div className="App">
       <NavBar />
-      <Flex alignItems="center" bg="black" direction="column" height="100%" justifyContent= "space-between">
+      <Flex alignItems="center" bg="smcblack" direction="column" height="100%" justifyContent= "space-between">
         <Box height="77px"/>
         <Box alignItems="left">
             <Text variant="H1" fontSize="60px">

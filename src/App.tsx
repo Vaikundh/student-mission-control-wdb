@@ -83,11 +83,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/button" element={<Buttons text="Button"/>} />
+          {/* <Route path="/button" element={<Buttons text="Button"/>} /> */}
           <Route path="/navbar" element={<NavBar />} />
-          <Route path="/button_sec" element={<Buttons text="Button" type="secondary"/>} />
-          <Route path="/button_dis" element={<Buttons text="Button" disabled={true}/>} />
-          <Route path="/user_profile" element={<UserProfile pic={data.pic} name={data.name} role={data.role} contact={data.contact}/>} />
+          {/* <Route path="/user_profile" element={<UserProfile pic={data.pic} name={data.name} role={data.role} contact={data.contact}/>} /> */}
           <Route path="/grid" element={<ProfileGrid list={menuItems}/>} />
           <Route path="/about_team" element={<AboutTeam/>} />
 
