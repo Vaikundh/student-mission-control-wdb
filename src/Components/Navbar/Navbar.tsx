@@ -12,7 +12,9 @@ const NavBar = () => {
                 bg="smcdarkgrey"
                 paddingRight="45px"
                 >
+
                 <Logo/>
+
                 <Spacer /> 
                 <Flex>
                     <Dropdown label="Curriculum" menu1="Home" menu2="For Students" menu3="For Teachers" w='145px'></Dropdown>
