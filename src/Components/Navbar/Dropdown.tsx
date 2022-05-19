@@ -17,8 +17,10 @@ const Dropdown = (props: DropdownProps) => {
             <MenuButton  
                 as={Button}
                 rightIcon={<TriangleDownIcon w={3} h={3}/>}
-                width = {props.w}
+                width='120px'
+                height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+
                 bg='smcdarkgrey'
                 color='smcwhite'
                 borderBottomWidth='3px'
@@ -29,6 +31,7 @@ const Dropdown = (props: DropdownProps) => {
                 fontWeight='400'
                 mr="10px"
                 _hover={{ 
+
                     bg: 'smcdarkblue',
                     color: 'smclightblue',
                     borderBottomColor: 'smclightblue',
@@ -38,11 +41,13 @@ const Dropdown = (props: DropdownProps) => {
                     bg: 'smcdarkgrey',
                     transform: 'scale(0.98)',
                     borderBottomColor: 'smclightblue',
+
                 }}
                 _focus={{
                     // boxShadow:
                     // '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
                 }}
+            
                 >
                 {props.label}
             </MenuButton>
