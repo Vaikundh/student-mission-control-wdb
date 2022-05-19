@@ -38,28 +38,30 @@ const UnitPage = (props: UnitPageProps) => {
 }
 
   return (
-    <>
+    <Box 
+    style={{
+      backgroundColor: '#121212',
+    }}>
       <NavBar />
-      <Heading mt='5%' ml='15%'>Unit {props.unit}</Heading>
-      <Flex direction="row" justifyContent='center' h='66vh'>
+      <Heading mt='5%' ml='15%' color='#FFFFFF'>Unit {props.unit}</Heading>
+      <Flex direction="row" ml='15%' h='66vh'>
           { labsArr.map((val) => {
           return (
               <>
-              <Box mt='2%' bg='black' w='20%' h='380px' justifyContent='center' borderRadius='lg' mr="5%">
-                  <Flex justifyContent='center'>
-                      <Button mt='280px' fontSize='22' w='267px' h='78px' onClick={() => nav(val)} >
-                      Lab { val }
+                  <Flex justifyContent='left'>
+                      <Button mr="5%" mt='10%' variant="solid" fontSize='22' w='250px' h='78px' backgroundColor='#343434' color='#FFFFFF' onClick={() => nav(val)} >
+                        Lab { val }
                       </Button>
                   </Flex>
-              </Box>
               </>
           )
           })
           }
       </Flex>
       <Footer />
-    </>
+    </Box>
   );
 };
+// as='button' mt='2%' bg='#C4C4C433;' w='20%' h='380px' justifyContent='center' borderRadius='lg' mr="5%"
 
 export default UnitPage;

@@ -108,7 +108,6 @@ const theme = extendTheme({
     },
     Button: {
       defaultProps: {
-        variant: 'primary',
       },
       baseStyle: {
         borderRadius: '10px',
@@ -176,6 +175,7 @@ const theme = extendTheme({
             bg: '#4D4D4D',
           },
         },
+        
       },
     },
     Link : {
