@@ -12,7 +12,7 @@ import CLOUDS_TEXTURE_URL from '../images/fair_clouds_4k.png';
 
 const CLOUDS_ALT = 0.05;
 const CLOUDS_ROTATION_SPEED = 0.02; // deg/frame
-const ISS_SIZE = 2.75;
+const ISS_SIZE = 2.5;
 
 const Globey = () => {
   const [ISSmodel, setISSmodel] = useState<THREE.Group | null>(null);
@@ -109,7 +109,7 @@ const Globey = () => {
 
     currentWorld.scene().add(
       new THREE.Mesh(
-        new THREE.SphereGeometry(currentWorld.getGlobeRadius() * 10, 30, 30),
+        new THREE.SphereGeometry(currentWorld.getGlobeRadius() * 10, 13, 13),
         new THREE.MeshBasicMaterial({
           map: THREE.ImageUtils.loadTexture(STARFIELD_URL),
           side: THREE.BackSide,
