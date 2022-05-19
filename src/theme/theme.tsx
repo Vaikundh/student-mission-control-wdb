@@ -107,8 +107,6 @@ const theme = extendTheme({
       },
     },
     Button: {
-      defaultProps: {
-      },
       baseStyle: {
         borderRadius: '10px',
         bg: '#121212',
@@ -175,7 +173,7 @@ const theme = extendTheme({
             bg: '#4D4D4D',
           },
         },
-        
+
       },
     },
     Link : {
