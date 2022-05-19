@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react';
+import { AbsoluteCenter, extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   shadows: {
@@ -107,6 +107,9 @@ const theme = extendTheme({
       },
     },
     Button: {
+      defaultProps: {
+        variant: 'primary',
+      },
       baseStyle: {
         borderRadius: '10px',
         bg: '#121212',

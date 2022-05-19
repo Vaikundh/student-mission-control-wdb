@@ -6,28 +6,36 @@ import {
   Stack,
   Text,
   Image,
-  useColorModeValue,
-  LinkOverlay,
 } from '@chakra-ui/react';
 import * as React from 'react';
 
 const Footer = () => {
   return (
-    <Box bg="#212121" >
+    <Box bg="#212121">
       <Container as={Stack} maxW={'6xl'} py={7} align={'center'}>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr 1fr 1fr' }}
           spacing={9}>
           <Stack align={'flex-start'}>
-          <Image src='/images/SMC.svg'/>
-          <Link href='https://www.grants.gov/learn-grants/grant-making-agencies/national-science-foundation.html'>
-            <Image src='/images/NSFLogo.svg'/>
-          </Link>
+            <Image src='/images/logo.svg'/>
+            <Stack direction={'row'}>
+              <Link href='https://nsf.gov/awardsearch/showAward?AWD_ID=2027260&HistoricalAwards=false'>
+                <Image src='/images/NSFlogo.svg' boxSize='50px'/ >
+              </Link>
+              <Stack align={'flex-start'}>
+                <Text variant="FootnoteBold"> NSF Grant </Text>
+                <Link variant="footer" href={'#'}>
+                  #2027260
+                </Link>
+              </Stack>
+            </Stack>
+            
           </Stack>
           <Stack align={'center'}>
             <Link href='https://www.issnationallab.org/'>
               <Image src='/images/ISSLogo.svg'/>
             </Link>
+            
             <Link href='https://www.berkeley.edu'>
               <Image src='/images/berkeleylogo.svg'/>
             </Link> 
