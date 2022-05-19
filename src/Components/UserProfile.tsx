@@ -12,6 +12,8 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 
+const images = require.context('../Assets/Profile_Images', true);
+
 interface ProfileProps {
   pic?: string;
   name?: string;
@@ -20,10 +22,11 @@ interface ProfileProps {
 }
 
 const UserProfile = (props : ProfileProps) => {
+  
     return (
       <Container mt={4}>
         <Flex color='white' flexDirection='column' justify="flex-start">
-          <Image src={require(`../Assets/Profile_Images/${props.pic}.png`)} borderRadius='20px' boxSize='150px' alt={props.name} fallbackSrc='https://via.placeholder.com/150'/>
+          <Image src={images(`./${props.pic}.png`).default} borderRadius='20px' boxSize='150px' alt={props.name} fallbackSrc='https://via.placeholder.com/150'/>
           <Text marginTop="8px" align="left">{props.name}</Text>
           <Text align="left">{props.role}</Text>
           <Text color="#91D8F6" align="left">{props.contact}</Text>

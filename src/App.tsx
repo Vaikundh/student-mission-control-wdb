@@ -12,12 +12,6 @@ import ProfileGrid from "./Components/ProfileGrid";
 import AboutTeam from "./pages/AboutTeam";
 import Home from "./pages/Home";
 
-const data = {
-  "pic": "https://res.cloudinary.com/practicaldev/image/fetch/s--nh8zSFgY--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/285604/94170c66-2590-4002-90e0-ec4dc94ed7b5.png",
-  "name": "Oski",
-  "role": "Cheerleader",
-  "contact": "oski@berkeley.edu"
-}
 
 const menuItems = [{
   "pic": "https://res.cloudinary.com/practicaldev/image/fetch/s--nh8zSFgY--/c_fill,f_auto,fl_progressive,h_320,q_auto,w_320/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/285604/94170c66-2590-4002-90e0-ec4dc94ed7b5.png",
