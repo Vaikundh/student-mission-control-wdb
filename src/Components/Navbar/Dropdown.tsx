@@ -1,6 +1,6 @@
 import { Menu, MenuList, MenuItem, MenuButton, Button, Divider } from '@chakra-ui/react'
 import { TriangleDownIcon } from '@chakra-ui/icons'
-import { SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 
 interface DropdownProps {
     label: string;
@@ -14,34 +14,34 @@ const Dropdown = (props: DropdownProps) => {
     
     return (
         <Menu>
-            <MenuButton 
-                as={Button} 
+            <MenuButton  
+                as={Button}
                 rightIcon={<TriangleDownIcon w={3} h={3}/>}
                 width = {props.w}
                 transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                bg='#212121'
-                color='#FFFFFF'
+                bg='smcdarkgrey'
+                color='smcwhite'
                 borderBottomWidth='3px'
                 borderBottomColor='#103f53'
-                height = "50px"
+                height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 borderRadius="0px"
                 fontSize='18px'
                 fontWeight='400'
                 mr="10px"
                 _hover={{ 
-                    bg: '#001A33',
-                    color: '#91D8F6',
-                    borderBottomColor: '#91D8F6',
+                    bg: 'smcdarkblue',
+                    color: 'smclightblue',
+                    borderBottomColor: 'smclightblue',
                     fontWeight:'700',
                 }}
                 _active={{
-                    bg: '#212121',
+                    bg: 'smcdarkgrey',
                     transform: 'scale(0.98)',
-                    borderBottomColor: '#91D8F6',
+                    borderBottomColor: 'smclightblue',
                 }}
                 _focus={{
-                    boxShadow:
-                    '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+                    // boxShadow:
+                    // '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
                 }}
                 >
                 {props.label}

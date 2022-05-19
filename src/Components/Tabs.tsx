@@ -1,6 +1,6 @@
 import { Menu, MenuList, MenuItem, MenuButton, Button } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 
 interface DropdownProps {
     color: string;
