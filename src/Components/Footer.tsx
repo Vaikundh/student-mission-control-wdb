@@ -11,7 +11,7 @@ import * as React from 'react';
 
 const Footer = () => {
   return (
-    <Box bg="#212121">
+    <Box bg="#212121" opacity='75%'>
       <Container as={Stack} maxW={'6xl'} py={7} align={'center'}>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr 1fr 1fr' }}
