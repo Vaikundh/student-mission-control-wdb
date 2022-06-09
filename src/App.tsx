@@ -15,6 +15,8 @@ import Home from "./pages/Home";
 import LabPage from './pages/LabPage';
 import UnitPage from './pages/UnitPage';
 import AllUnitsPage from './pages/AllUnitsPage';
+import ContactPage from './pages/Contact';
+import Resources from "./pages/Resources";
 
 
 
@@ -36,6 +38,8 @@ function App() {
           <Route path="/unit2/lab1" element={<LabPage unit={2} lab={1} />}></Route>
           <Route path="/unit1" element={<UnitPage unit={1}/>}></Route>
           <Route path="/unit2" element={<UnitPage unit={2}/>}></Route>
+          <Route path="/contact" element={<ContactPage/>}></Route>
+          <Route path="/resources" element={<Resources/>}></Route>
 
         </Routes>
       </Router>
