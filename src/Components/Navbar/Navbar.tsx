@@ -11,17 +11,17 @@ const NavBar = () => {
                 height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 bg="smcdarkgrey"
                 paddingRight="45px"
+                as="a"
+                href="/"
                 >
-
                 <Logo/>
-
                 <Spacer /> 
                 <Flex>
-                    <Dropdown label="Curriculum" menu1="Home" menu2="For Students" menu3="For Teachers" w='145px'></Dropdown>
-                    <Dropdown label="About" menu1="TBD" menu2="TBD" menu3="TBD" w='105px'></Dropdown>
-                    <NavButton label="Live Data"></NavButton>
-                    <NavButton label="Resources"></NavButton>
-                    <NavButton label="Contact Us"></NavButton>
+                    <Dropdown label="Curriculum" items={[['Home', '/'], ['For Students', '/'], ['For Teachers', '/']]} w='145px'></Dropdown>
+                    <Dropdown label="About" items={[['Project', '/about_project'], ['Team', '/about_team']]} w='105px'></Dropdown>
+                    <NavButton label="Live Data" link="/"></NavButton>
+                    <NavButton label="Resources" link="/resources"></NavButton>
+                    <NavButton label="Contact Us" link="/contact"></NavButton>
                 </Flex>    
             </Flex>
         </>
