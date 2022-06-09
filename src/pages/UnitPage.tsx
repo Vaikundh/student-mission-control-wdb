@@ -49,7 +49,7 @@ const UnitPage = (props: UnitPageProps) => {
           return (
               <>
                   <Flex justifyContent='left'>
-                      <Button mr="5%" mt='10%' variant="solid" fontSize='22' w='250px' h='78px' backgroundColor='#343434' color='#FFFFFF' onClick={() => nav(val)} >
+                      <Button mr="5%" mt='10%' variant="primary" fontSize='22' w='250px' h='78px' backgroundColor='#343434' color='#FFFFFF' onClick={() => nav(val)} >
                         Lab { val }
                       </Button>
                   </Flex>
