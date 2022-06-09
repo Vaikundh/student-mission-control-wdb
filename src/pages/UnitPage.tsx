@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../Components/Navbar/Navbar';
 import { Button, Heading, Flex, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Components/Footer';
 
 interface UnitPageProps {
   unit: number;
@@ -23,42 +21,64 @@ const UnitPage = (props: UnitPageProps) => {
     let a: number[] = new Array(numLabs);
     a = [];
     requireComponent.keys().forEach((fileName: string) => {
-      if (fileName.slice(2, 7) === `unit${props.unit}` && !a.includes(parseInt(fileName.slice(11, 12)))) {
+      if (
+        fileName.slice(2, 7) === `unit${props.unit}` &&
+        !a.includes(parseInt(fileName.slice(11, 12)))
+      ) {
         count++;
-        a.push(parseInt(fileName.slice(11, 12)))
+        a.push(parseInt(fileName.slice(11, 12)));
         setNumLabs(count);
       }
     });
     setLabsArr(a);
   };
 
-  const nav = (lab : number) => {
+  const nav = (lab: number) => {
     const s = '/unit' + props.unit + '/lab' + lab;
     navigate(s);
-}
+  };
+
+  //TODO: change button to arrow ..
+  const goToUnits = () => {
+    navigate('/units');
+  };
 
   return (
-    <Box 
-    style={{
-      backgroundColor: '#121212',
-    }}>
-      <NavBar />
-      <Heading mt='5%' ml='15%' color='#FFFFFF'>Unit {props.unit}</Heading>
-      <Flex direction="row" ml='15%' h='66vh'>
-          { labsArr.map((val) => {
+    <Box
+      style={{
+        backgroundColor: '#121212',
+      }}
+      minHeight="80vh">
+      <Box pt="80px" pl="80px">
+        <Button variant="secondary" onClick={goToUnits}>
+        Back
+      </Button>
+      </Box>
+      <Heading pt="20px" pl="230px" color="#FFFFFF">
+        Unit {props.unit}
+      </Heading>
+      <Flex direction="row" pl="230px">
+        {labsArr.map((val) => {
           return (
-              <>
-                  <Flex justifyContent='left'>
-                      <Button mr="5%" mt='10%' variant="solid" fontSize='22' w='250px' h='78px' backgroundColor='#343434' color='#FFFFFF' onClick={() => nav(val)} >
-                        Lab { val }
-                      </Button>
-                  </Flex>
-              </>
-          )
-          })
-          }
+            <>
+              <Flex justifyContent="left">
+                <Button
+                  mr="5%"
+                  mt="10%"
+                  variant="solid"
+                  fontSize="22"
+                  w="250px"
+                  h="78px"
+                  backgroundColor="#343434"
+                  color="#FFFFFF"
+                  onClick={() => nav(val)}>
+                  Lab {val}
+                </Button>
+              </Flex>
+            </>
+          );
+        })}
       </Flex>
-      <Footer />
     </Box>
   );
 };

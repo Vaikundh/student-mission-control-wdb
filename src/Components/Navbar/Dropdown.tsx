@@ -25,7 +25,6 @@ const Dropdown = (props: DropdownProps) => {
                 color='smcwhite'
                 borderBottomWidth='3px'
                 borderBottomColor='#103f53'
-                height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 borderRadius="0px"
                 fontSize='18px'
                 fontWeight='400'

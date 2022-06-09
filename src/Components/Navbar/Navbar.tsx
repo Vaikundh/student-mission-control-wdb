@@ -9,14 +9,14 @@ const NavBar = () => {
         <>
             <Flex
                 height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
-                bg="smcdarkgrey"
+                bg="smcdarkgrey.500"
                 paddingRight="45px"
                 >
 
                 <Logo/>
 
                 <Spacer /> 
-                <Flex>
+                <Flex color="white">
                     <Dropdown label="Curriculum" menu1="Home" menu2="For Students" menu3="For Teachers" w='145px'></Dropdown>
                     <Dropdown label="About" menu1="TBD" menu2="TBD" menu3="TBD" w='105px'></Dropdown>
                     <NavButton label="Live Data"></NavButton>
