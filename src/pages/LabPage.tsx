@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import NavBar from '../Components/Navbar/Navbar';
-import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../Components/ProgressBar';
 import { Button } from '@chakra-ui/react';
 
 interface LabPageProps {
+  unit: number;
   lab: number;
 }
 
 const LabPage = (props: LabPageProps) => {
-  const navigate = useNavigate();
   const [labs, setLabs] = useState(new Map<number, any[]>());
   const [lab, setLab] = useState<JSX.Element>(<Dummy></Dummy>);
   const [numLabs, setNumLabs] = useState(0);
@@ -28,7 +27,6 @@ const LabPage = (props: LabPageProps) => {
   }, [labIndex]);
 
   const getLabs = () => {
-    console.log('../curriculum/lab' + props.lab.toString());
     const file = '../curriculum/lab' + props.lab.toString();
     // ugh... can't import based on dynamic path.. path changes based on lab folder... what to dooooo
     const requireComponent = require.context(`../curriculum`, true, /.mdx$/);
@@ -36,7 +34,7 @@ const LabPage = (props: LabPageProps) => {
 
     let count = 0;
     requireComponent.keys().forEach((fileName: string) => {
-      if (fileName.slice(2, 6) === `lab${props.lab}`) {
+      if (fileName.slice(2, 7) === `unit${props.unit}` && fileName.slice(8,12) === `lab${props.lab}`) {
         count++;
         const componentName = fileName
           .replace(/^\.\//, '')
@@ -46,6 +44,7 @@ const LabPage = (props: LabPageProps) => {
         import(
           `!babel-loader!mdx-loader!../curriculum/${componentName}.mdx`
         ).then((stuff) => {
+          console.log(`../curriculum/${componentName}.mdx'`)
           const lab_stuff = [stuff.default, stuff.frontMatter];
           const lab_index = stuff.frontMatter.index;
           if (lab_index == 0) {

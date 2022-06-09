@@ -2,12 +2,18 @@ import { Menu, MenuList, MenuItem, MenuButton, Button, Divider } from '@chakra-u
 import { TriangleDownIcon } from '@chakra-ui/icons'
 import React, { SetStateAction } from 'react';
 
+
+const productDetails = {
+    title: "product title",
+    stock: ["5", "1"],
+    links: [["/about_project", "/about_project"], ["/about_proje", "/about_proj"]]
+  };
+
 interface DropdownProps {
     label: string;
-    menu1: string;
-    menu2: string;
-    menu3: string;
+    items: string[][]
     w: string;
+
 }
 
 const Dropdown = (props: DropdownProps) => {
@@ -20,16 +26,18 @@ const Dropdown = (props: DropdownProps) => {
                 width='120px'
                 height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+
+                bg='smcdarkgrey'
+                color='smcwhite'
                 borderBottomWidth='3px'
                 borderBottomColor='#103F53'
                 px='8px'
                 borderRadius='0px'
                 fontSize='18px'
                 fontWeight='400'
-                bg='smcdarkgrey'
-                color='smcwhite'
-                marginRight='10px'
-                _hover={{
+                mr="10px"
+                _hover={{ 
+
                     bg: 'smcdarkblue',
                     color: 'smclightblue',
                     borderBottomColor: 'smclightblue',
@@ -50,32 +58,21 @@ const Dropdown = (props: DropdownProps) => {
                 {props.label}
             </MenuButton>
             <MenuList bg='#001a33' borderColor='#91d8f6'>
-                <MenuItem 
-                    _hover={{ bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'}}
-                    color='#FFFFFF'
-                    _focus={{
-                        bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'
-                    }}
-                    >
-                    {props.menu1}
-                </MenuItem>
-                <Divider />
-                <MenuItem 
-                    _hover={{ bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'}}
-                    color='#FFFFFF'
-                    _focus={{
-                        bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'
-                    }}
-                    >
-                    {props.menu2}
-                </MenuItem>
-                <Divider />
-                <MenuItem 
-                    _hover={{ bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'}}
-                    color='#FFFFFF'
-                    >
-                    {props.menu3}
-                </MenuItem>
+                    {props.items
+                .map((item, i) => {
+                return <MenuItem
+                        _hover={{ bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'}}
+                        color='#FFFFFF'
+                        _focus={{
+                            bg: '#001a33',color: '#91d8f6',fontWeight: 'bold'
+                        }}
+                        as="a" href={item[1]}
+                        key={i}>
+                            {item[0]}
+                        </MenuItem>;
+                        <Divider />
+                })}
+                
             </MenuList>
         </Menu>
     )
