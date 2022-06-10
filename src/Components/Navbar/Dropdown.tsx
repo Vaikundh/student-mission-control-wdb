@@ -54,7 +54,7 @@ const Dropdown = (props: DropdownProps) => {
                 }}
             
                 >
-                {props.label} <TriangleDownIcon pl="10px" w={3} h={3}/>
+                {props.label} <TriangleDownIcon ml="6px" w={3} h={3}/>
             </MenuButton>
             <MenuList bg='#001a33' borderColor='#91d8f6'>
                     {props.items

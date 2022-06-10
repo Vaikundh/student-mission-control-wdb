@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import ProgressBar from '../Components/ProgressBar';
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Text, Image } from '@chakra-ui/react';
 
 interface LabPageProps {
   unit: number;
@@ -102,6 +102,7 @@ const LabPage = (props: LabPageProps) => {
         {labIndex + 1} / {numLabs}
       </Text>
       <div className="default">{lab}</div>
+      {labIndex == numLabs - 1 ?  <Text fontSize="3xl" fontWeight="bold" align="center">Congratulations on finishing Lab {labIndex + 1}!</Text> : <></>}
       <Box pt="40px">
         <Button
           variant="secondary"
