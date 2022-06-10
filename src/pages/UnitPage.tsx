@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, Flex, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 
 interface UnitPageProps {
   unit: number;
@@ -49,10 +50,8 @@ const UnitPage = (props: UnitPageProps) => {
         backgroundColor: '#121212',
       }}
       minHeight="80vh">
-      <Box pt="80px" pl="80px">
-        <Button variant="secondary" onClick={goToUnits}>
-        Back
-      </Button>
+      <Box pt="100px" pl="140px">
+        <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}></ArrowBackIcon>
       </Box>
       <Heading pt="20px" pl="230px" color="#FFFFFF">
         Unit {props.unit}
