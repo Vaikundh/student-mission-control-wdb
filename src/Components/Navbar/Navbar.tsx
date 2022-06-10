@@ -16,7 +16,7 @@ const NavBar = () => {
                 >
                 <Logo/>
                 <Spacer /> 
-                <Flex>
+                <Flex color="white">
                     <Dropdown label="Curriculum" items={[['Home', '/'], ['For Students', '/'], ['For Teachers', '/']]} w='145px'></Dropdown>
                     <Dropdown label="About" items={[['Project', '/about_project'], ['Team', '/about_team']]} w='105px'></Dropdown>
                     <NavButton label="Live Data" link="/"></NavButton>
