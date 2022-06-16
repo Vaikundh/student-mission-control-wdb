@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../Components/Navbar/Navbar';
 import { Button, Heading, Box, VStack, Flex, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
@@ -38,10 +37,9 @@ const AllUnitsPage = () => {
       <Box 
         style={{
           backgroundColor: '#121212',
-        }}>
-        <NavBar />
-        <Heading mt='5%' ml='15%' color='#FFFFFF'>Student Curriculum</Heading>
-        <Flex direction="row" justifyContent='center' h='66vh'>
+        }} minHeight="80vh">
+        <Heading pt='5%' pl='15%' color='#FFFFFF'>Student Curriculum</Heading>
+        <Flex direction="row" justifyContent='center'>
             { unitsArr.map((val) => {
             return (
                 <>
@@ -58,7 +56,6 @@ const AllUnitsPage = () => {
             })
             }
         </Flex>
-        <Footer />
       </Box>
     );
   };

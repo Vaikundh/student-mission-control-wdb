@@ -1,4 +1,4 @@
-import { AbsoluteCenter, extendTheme } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   shadows: {
@@ -8,7 +8,6 @@ const theme = extendTheme({
   },
 
   colors: {
-    // commented out because this is breaking some chakra components
     smclightblue: '#91D8F6',
     smcblue: '#22347F',
     smcdarkblue: '#001A33',
@@ -19,7 +18,7 @@ const theme = extendTheme({
     smcwhite: '#FFFFFF',
     smclightgrey: '#C9D7DD',
     smcyellow: '#836000',
-    smcred: '#612933',
+    smcred:'#612933',
     smcorange: '#B7521F',
   },
 
@@ -107,9 +106,6 @@ const theme = extendTheme({
       },
     },
     Button: {
-      defaultProps: {
-        variant: 'primary',
-      },
       baseStyle: {
         borderRadius: '10px',
         bg: '#121212',

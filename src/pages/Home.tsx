@@ -1,7 +1,5 @@
 import React from 'react';
 import Globey from '../Components/Globe';
-import Footer from '../Components/Footer';
-import NavBar from '../Components/Navbar/Navbar';
 import Buttons from '../Components/Buttons';
 
 import { Box, Button, Text } from '@chakra-ui/react';
@@ -18,7 +16,6 @@ const Home = () => {
     <div className="App">
       
       <Globey />
-      <Box pos='absolute' left="0%" top="0%" width='100%'><NavBar /></Box>
       
       <Text variant="H2" fontSize={{ base: '24px', md: '40px', lg: '60px' }}pos="absolute" left="5%" top="13%">
         Student Mission Control
@@ -29,7 +26,6 @@ const Home = () => {
       <Button variant="primary" pos="absolute" left="5%" top="27%" onClick={() => nav()} >
         Explore the Curriculum
       </Button>
-      <Box pos='absolute' left="0%" bottom='0' width='100%'><Footer /></Box>
       
     </div>
   );
