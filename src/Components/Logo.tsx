@@ -5,9 +5,16 @@ import { Box } from "@chakra-ui/react";
 // eslint-disable-next-line @typescript-eslint/ban-types
 const Logo = (props: Object) => {
   return (
-    // <Box>
-      <img {...props} src={logo}/>
-    // </Box>
+    <Box 
+    display="flex"
+            alignItems= "center"
+            justifyContent="center" 
+            flexDirection="column" 
+            ml='15px'>
+    <a href="/">
+    <img {...props} src={logo} />
+    </a>
+    </Box>
   );
 };
 
