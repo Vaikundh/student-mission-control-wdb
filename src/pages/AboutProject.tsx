@@ -1,6 +1,4 @@
 import React from 'react';
-import Footer from '../Components/Footer';
-import NavBar from '../Components/Navbar/Navbar';
 import Buttons from '../Components/Buttons';
 import { Button, Text, Box, Spacer, Center, Flex} from '@chakra-ui/react';
 import UserProfile from '../Components/UserProfile';
@@ -10,7 +8,6 @@ import ProfileGrid from '../Components/ProfileGrid';
 const AboutProject = () => {
   return (
     <div className="App">
-      <NavBar />
       <Flex alignItems="center" bg="smcblack" direction="column" height="100%" justifyContent= "space-between">
         <Box height="77px"/>
         <Box alignItems="left">
@@ -47,7 +44,6 @@ const AboutProject = () => {
 
         <Box height="372px"/>
       </Flex>
-      <Footer />
     </div>
   );
 };

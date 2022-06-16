@@ -10,7 +10,6 @@ import ProfileGrid from '../Components/ProfileGrid';
 const Resources = () => {
   return (
     <div className="App">
-      <NavBar />
       <Flex bg="smcblack" direction="column" height="100%" justifyContent= "space-between">
         <Box height="77px"/>
         <Box alignItems="left">
@@ -53,7 +52,6 @@ const Resources = () => {
 
         
       </Flex>
-      <Footer />
     </div>
   );
 };
