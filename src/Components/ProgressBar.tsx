@@ -1,6 +1,6 @@
 import React from 'react';
-import { flexbox, Progress } from '@chakra-ui/react';
-import { lowercaseSVGElements } from 'framer-motion/types/render/svg/supported-elements';
+import { Image } from '@chakra-ui/react';
+import satellite from '../images/satellite.svg';
 
 interface ProgressProps {
   progress: number;
@@ -8,9 +8,24 @@ interface ProgressProps {
 
 const ProgressBar = (props: ProgressProps) => {
   return (
-    <>
-        <Progress value={props.progress} />
-    </>
+    <div style={{
+      height: 10,
+      width: '100%',
+      backgroundColor: '#212121',
+      borderRadius: 20,
+    }}>
+      <div
+        style={{
+          height: '100%',
+          width: props.progress + '%',
+          backgroundColor: '#91D8F6',
+          borderRadius: 20,
+          display: 'flex',
+          alignItems: 'center',
+        }}>
+        <Image ml="calc(100% - 50px)" src={satellite}></Image>
+      </div>
+    </div>
   );
 };
 

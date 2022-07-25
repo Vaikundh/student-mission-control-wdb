@@ -8,6 +8,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import * as React from 'react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -17,10 +18,10 @@ const Footer = () => {
           templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr 1fr 1fr' }}
           spacing={9}>
           <Stack align={'flex-start'}>
-            <Image src='/images/SMC.svg'/>
+            <Logo/>
             <Stack direction={'row'}>
               <Link href='https://nsf.gov/awardsearch/showAward?AWD_ID=2027260&HistoricalAwards=false'>
-                <Image src='/images/NSFLogo.svg' boxSize='50px'/ >
+                <Image src='/images/NSFlogo.svg' boxSize='50px'/ >
               </Link>
               <Stack align={'flex-start'}>
                 <Text variant="FootnoteBold"> NSF Grant </Text>

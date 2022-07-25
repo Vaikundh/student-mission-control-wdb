@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
-import NavBar from '../Components/Navbar/Navbar';
 import ProgressBar from '../Components/ProgressBar';
-import { Button } from '@chakra-ui/react';
+import { Box, Button, Text, Image } from '@chakra-ui/react';
 
 interface LabPageProps {
   unit: number;
@@ -34,7 +33,10 @@ const LabPage = (props: LabPageProps) => {
 
     let count = 0;
     requireComponent.keys().forEach((fileName: string) => {
-      if (fileName.slice(2, 7) === `unit${props.unit}` && fileName.slice(8,12) === `lab${props.lab}`) {
+      if (
+        fileName.slice(2, 7) === `unit${props.unit}` &&
+        fileName.slice(8, 12) === `lab${props.lab}`
+      ) {
         count++;
         const componentName = fileName
           .replace(/^\.\//, '')
@@ -44,7 +46,7 @@ const LabPage = (props: LabPageProps) => {
         import(
           `!babel-loader!mdx-loader!../curriculum/${componentName}.mdx`
         ).then((stuff) => {
-          console.log(`../curriculum/${componentName}.mdx'`)
+          console.log(`../curriculum/${componentName}.mdx'`);
           const lab_stuff = [stuff.default, stuff.frontMatter];
           const lab_index = stuff.frontMatter.index;
           if (lab_index == 0) {
@@ -72,6 +74,7 @@ const LabPage = (props: LabPageProps) => {
   };
 
   const routeNext = () => {
+    window.scrollTo(0, 0);
     if (labIndex === numLabs - 1) {
       return;
     }
@@ -84,23 +87,38 @@ const LabPage = (props: LabPageProps) => {
   };
 
   return (
-    <>
-      <NavBar />
+    <Box
+      style={{
+        backgroundColor: '#121212',
+        color: 'white',
+      }}
+      minHeight="80vh"
+      pl="100px"
+      pr="100px"
+      pt="50px"
+      pb="50px">
       <ProgressBar progress={progress} />
-      {labIndex + 1} / {numLabs}
+      <Text align="right" pt="20px">
+        {labIndex + 1} / {numLabs}
+      </Text>
       <div className="default">{lab}</div>
-      <Button
-        variant="secondary"
-        disabled={labIndex == 0 ? true : false}
-        onClick={routePrev}>
-        Back
-      </Button>
-      <Button
-        onClick={routeNext}
-        disabled={labIndex == numLabs - 1 ? true : false}>
-        Next
-      </Button>
-    </>
+      {labIndex == numLabs - 1 ?  <Text fontSize="3xl" fontWeight="bold" align="center">Congratulations on finishing Lab {labIndex + 1}!</Text> : <></>}
+      <Box pt="40px">
+        <Button
+          variant="secondary"
+          disabled={labIndex == 0 ? true : false}
+          onClick={routePrev}>
+          Back
+        </Button>
+        <Button
+          float="right"
+          variant="primary"
+          onClick={routeNext}
+          disabled={labIndex == numLabs - 1 ? true : false}>
+          Next
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
