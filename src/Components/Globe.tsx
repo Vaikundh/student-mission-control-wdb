@@ -91,7 +91,7 @@ const Globey = () => {
     new THREE.TextureLoader().load(CLOUDS_TEXTURE_URL, (cloudsTexture) => {
       const clouds = new THREE.Mesh(
         new THREE.SphereBufferGeometry(
-          currentWorld.getGlobeRadius() * (1 + CLOUDS_ALT),
+          currentWorld.getGlobeRadius() * (0.955 + CLOUDS_ALT),
           75,
           75,
         ),

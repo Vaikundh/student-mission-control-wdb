@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import ProgressBar from '../Components/ProgressBar';
-import { Box, Button, Text, Image } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
+import Gradient from '../Assets/Gradients/labgradient.svg'
 
 interface LabPageProps {
   unit: number;
@@ -96,14 +97,19 @@ const LabPage = (props: LabPageProps) => {
       pl="100px"
       pr="100px"
       pt="50px"
-      pb="50px">
-      <ProgressBar progress={progress} />
-      <Text align="right" pt="20px">
+      pb="50px"
+      bgImage={Gradient}>
+      <Box display='flex' justifyContent='center'>
+        <ProgressBar progress={progress} />
+      </Box>
+      <Text variant='primary'align="right" mr='10%' pt="20px">
         {labIndex + 1} / {numLabs}
       </Text>
-      <div className="default">{lab}</div>
+      <Box width='100%' display='flex' justifyContent='center'>
+        <Box width='50%' className="default">{lab}</Box>
+      </Box>
       {labIndex == numLabs - 1 ?  <Text fontSize="3xl" fontWeight="bold" align="center">Congratulations on finishing Lab {labIndex + 1}!</Text> : <></>}
-      <Box pt="40px">
+      <Box pt="40px" display='flex' justifyContent='space-around'>
         <Button
           variant="secondary"
           disabled={labIndex == 0 ? true : false}

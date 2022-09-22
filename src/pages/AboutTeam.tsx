@@ -1,8 +1,7 @@
 import React from 'react';
-import Buttons from '../Components/Buttons';
-import { Button, Text, Box, Spacer, Center, Flex} from '@chakra-ui/react';
-import UserProfile from '../Components/UserProfile';
+import { Text, Box, Flex} from '@chakra-ui/react';
 import ProfileGrid from '../Components/ProfileGrid';
+import Gradient from "../Assets/Gradients/gradientbackground.svg"
 
 const ISS = [{
     "pic": "samantha_thorstensen",
@@ -138,7 +137,7 @@ const ISS = [{
 const AboutTeam = () => {
   return (
     <div className="App">
-      <Flex alignItems="center" bg="smcblack" direction="column" height="100%" justifyContent= "space-between">
+      <Flex alignItems="center"  direction="column" height="100%" justifyContent= "space-between" backgroundImage={Gradient}>
         <Box height="77px"/>
         <Box alignItems="left">
             <Text variant="H1" fontSize="60px">
@@ -150,9 +149,8 @@ const AboutTeam = () => {
         <Text variant="H3" fontSize="32px" lineHeight="41px" letterSpacing="0.37px">
                 ISS National Lab Team
         </Text>
-        <Box height="43px"/>
+        <Box height="43px" />
         <ProfileGrid list={ISS} />
-
         <Box height="128px"/>
         <Text variant="H3" fontSize="32px" lineHeight="41px" letterSpacing="0.37px">
                 UC Berkeley Team 

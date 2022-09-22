@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form'
 import { Box, Button, Text, Flex, VStack, Input, FormControl, FormLabel, Textarea, FormErrorMessage } from '@chakra-ui/react';
+import Gradient from '../Assets/Gradients/gradientbackground.svg'
 
 const Contact = () => {
   const {
@@ -19,7 +20,7 @@ const Contact = () => {
   }
     return (
       <div>
-      <Box padding="120px" bg="smcblack" paddingTop="40px" overflow="hidden">
+      <Box padding="120px" bgImage={Gradient} paddingTop="40px" overflow="hidden">
         <Text variant="H1">Get in Contact!</Text>
         <Box float="left" width="65%" paddingRight="100px" mt="30px">
           <Text variant="H4" mb="10px">Send a Message</Text>

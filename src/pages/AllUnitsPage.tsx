@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Heading, Box, VStack, Flex, Image } from '@chakra-ui/react';
+import { Button, Text, Box, VStack, Flex, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Components/Footer';
-import NavButton from '../Components/Navbar/NavButton';
+import Gradient from '../Assets/Gradients/gradientbackground.svg'
 
 const AllUnitsPage = () => {
     const navigate = useNavigate();
@@ -37,18 +36,29 @@ const AllUnitsPage = () => {
       <Box 
         style={{
           backgroundColor: '#121212',
-        }} minHeight="80vh">
-        <Heading pt='5%' pl='15%' color='#FFFFFF'>Student Curriculum</Heading>
+        }} minHeight="80vh" bgImage={Gradient}>
+        <Text variant='H2' pt='5%' pl='15%' color='#FFFFFF'>Student Curriculum</Text>
         <Flex direction="row" justifyContent='center'>
             { unitsArr.map((val) => {
             return (
                 <>
-                <Box mt='2%' bg='black' w='20%' h='420px' borderRadius='lg' mr="5%">
+                <Box mt='2%' bg='smcblack' w='20%' h='420px' borderRadius='lg' mr="5%" border='solid' borderColor="smclightblue" boxShadow="xl"
+                _hover={{ 
+                  bg: 'smcdarkblue',
+              }}
+              _active={{
+                  bg: 'smcdarkgrey',
+                  transform: 'scale(0.98)',
+                  borderBottomColor: 'smclightblue',
+
+              }}>
                   <VStack spacing='80px'>
                     <Image mt='20%' src={"images/Unit" + val + ".svg"} />
-                    <Button variant="primary" mt='280px' fontSize='22' w='90%' h='78px' backgroundColor='#343434' color='#FFFFFF' onClick={() => nav(val)} >
-                      Unit { val }
-                     </Button>
+                    <Button variant="primary" mt='280px' fontSize='22' w='90%' h='78px' backgroundColor='smcdarkgrey' color='#FFFFFF' onClick={() => nav(val)} >
+                        <Text variant='BodyLarge'>
+                          Unit { val }
+                        </Text>
+                    </Button>
                   </VStack>
                 </Box>
                 </>

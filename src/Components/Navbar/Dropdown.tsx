@@ -23,7 +23,7 @@ const Dropdown = (props: DropdownProps) => {
             <MenuButton  
                 as={MenuButton}
                 // rightIcon={<TriangleDownIcon w={3} h={3}/>}
-                width='130px'
+                width='135px'
                 height={{ base: '50px', md: '60px', lg: '70px', xl: '85px' }}
                 transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
 

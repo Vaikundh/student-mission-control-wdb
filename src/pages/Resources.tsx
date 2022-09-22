@@ -1,16 +1,11 @@
 import React from 'react';
-import Footer from '../Components/Footer';
-import NavBar from '../Components/Navbar/Navbar';
-import Buttons from '../Components/Buttons';
-import { Button, Text, Box, Spacer, Center, Flex} from '@chakra-ui/react';
-import UserProfile from '../Components/UserProfile';
-import ProfileGrid from '../Components/ProfileGrid';
-
+import { Text, Box, Flex} from '@chakra-ui/react';
+import Gradient from "../Assets/Gradients/labgradient.svg"
 
 const Resources = () => {
   return (
     <div className="App">
-      <Flex bg="smcblack" direction="column" height="100%" justifyContent= "space-between">
+      <Flex bgImage={Gradient} direction="column" height="100%" justifyContent= "space-between">
         <Box height="77px"/>
         <Box alignItems="left">
             <Text variant="H1" fontSize="60px">
@@ -47,7 +42,7 @@ const Resources = () => {
                 Example Projects
         </Text>
 
-        <Box height="420px"/>
+        <Box height="200px"/>
 
 
         

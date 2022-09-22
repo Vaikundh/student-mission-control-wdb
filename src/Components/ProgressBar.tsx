@@ -10,7 +10,7 @@ const ProgressBar = (props: ProgressProps) => {
   return (
     <div style={{
       height: 10,
-      width: '100%',
+      width: '80%',
       backgroundColor: '#212121',
       borderRadius: 20,
     }}>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Heading, Flex, Box } from '@chakra-ui/react';
+import { Button, Text, Flex, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import Gradient from '../Assets/Gradients/labgradient.svg'
 
 interface UnitPageProps {
   unit: number;
@@ -45,17 +46,13 @@ const UnitPage = (props: UnitPageProps) => {
   };
 
   return (
-    <Box
-      style={{
-        backgroundColor: '#121212',
-      }}
-      minHeight="80vh">
+    <Box minHeight="80vh" bgImage={Gradient}>
       <Box pt="100px" pl="140px">
         <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}></ArrowBackIcon>
       </Box>
-      <Heading pt="20px" pl="230px" color="#FFFFFF">
+      <Text variant='H2' pt="20px" pl="230px" color="#FFFFFF">
         Unit {props.unit}
-      </Heading>
+      </Text>
       <Flex direction="row" pl="230px">
         {labsArr.map((val) => {
           return (
@@ -68,10 +65,16 @@ const UnitPage = (props: UnitPageProps) => {
                   fontSize="22"
                   w="250px"
                   h="78px"
-                  backgroundColor="#343434"
+                  backgroundColor="smcdarkgrey"
+                  _hover={{
+                    bg: 'smcdarkblue',
+                    boxShadow:'2xl'
+                  }}
                   color="#FFFFFF"
                   onClick={() => nav(val)}>
-                  Lab {val}
+                    <Text variant='Body'>
+                    Lab {val}
+                    </Text>
                 </Button>
               </Flex>
             </>

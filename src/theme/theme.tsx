@@ -90,6 +90,12 @@ const theme = extendTheme({
           fontWeight: '800',
           fontFamily: 'Sen',
         },
+        BodyLarge:{
+          fontSize: '25px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          fontFamily: 'Sen',
+        },
         Footnote: {
           fontSize: '13px',
           fontStyle: 'normal',
