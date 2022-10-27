@@ -26,7 +26,7 @@ const AboutProject = () => {
           <Text m={[203, 3]} variant="Body" fontSize="28px" lineHeight="41px" letterSpacing="0.37px" color="white" padding='15px'>
             EAGER Student Mission Control for the International Space Station
           </Text>
-          <Text variant="Body" fontSize="20px" lineHeight="41px" letterSpacing="0.37px" color="white" padding='3%'>
+          <Text variant="Body" fontSize="20px" lineHeight="41px" letterSpacing="0.37px" color="white" padding='3%' textAlign='justify'>
             This EAGER award tests a bold concept, to engage high school students with direct access to data and experiments
              on the International Space Station, and to use these assets in computer science courses to help students develop
               skills of data inquiry, analysis and exploration. Results from this pilot will lead to subsequent work to develop
@@ -39,7 +39,7 @@ const AboutProject = () => {
               create and test a set of related learning activities with computer science applications, focusing specifically on data literacy,
               since this is of growing importance and a perennial challenge in computer science courses.
           </Text>
-          <Text variant="Body" fontSize="20px" lineHeight="41px" letterSpacing="0.37px" color="white" padding='3%'>
+          <Text variant="Body" fontSize="20px" lineHeight="41px" letterSpacing="0.37px" color="white" padding='3%' textAlign='justify'>
             We will design and implement a pilot curriculum to improve data literacy by engaging students with real data from the 
             International Space Station. We will also design a Student Mission Control interface system that mimicks NASA&lsquo;s own Mission Control.
             The team will address the technical challenges of accessing data from the ISS, manage it in a dynamic data engine and create an engaging 

@@ -7,9 +7,9 @@ const NavBar = () => {
     return (
         <>
             <Flex
-                height={{ base: '50px', md: '60px', lg: '70px', xl: '80px' }}
+                height={{ base: '40px', md: '60px', lg: '70px', xl: '80px' }}
                 bg="smcdarkgrey"
-                paddingRight="45px"
+                paddingRight={{base:'20px', xl:'45px'}}
                 alignItems='center'
                 >
                 <Box ml='1%'>

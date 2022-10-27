@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Box, Flex} from '@chakra-ui/react';
-import Gradient from "../Assets/Gradients/labgradient.svg"
+import Gradient from "../Assets/Gradients/unitgradient.svg"
 
 const Resources = () => {
   return (

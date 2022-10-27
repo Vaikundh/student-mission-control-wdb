@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../theme/default.scss';
 import Dummy from '!babel-loader!mdx-loader!../curriculum/dummy.mdx';
 import ProgressBar from '../Components/ProgressBar';
-import { Box, Button, Text } from '@chakra-ui/react';
-import Gradient from '../Assets/Gradients/labgradient.svg'
+import { Box, Button, Text, Link } from '@chakra-ui/react';
+import Gradient from '../Assets/Gradients/unitgradient.svg'
 
 interface LabPageProps {
   unit: number;
   lab: number;
+  numLabsInUnit: number;
 }
 
 const LabPage = (props: LabPageProps) => {
@@ -87,8 +88,76 @@ const LabPage = (props: LabPageProps) => {
     }
   };
 
-  return (
-    <Box
+  if (labIndex == 0) {
+    return (
+      <Box
+        style={{
+          backgroundColor: '#121212',
+          color: 'white',
+        }}
+        minHeight="80vh"
+        pl="100px"
+        pr="100px"
+        pt="50px"
+        pb="50px"
+        bgImage={Gradient}>
+        
+  
+        <Box display='flex' justifyContent='center'>
+          <ProgressBar progress={progress} />
+        </Box>
+        
+        <Box pt="40px" display='flex' justifyContent='space-around'>
+          
+          <Link href={'/unit'+props.unit} style={{ textDecoration: 'none' }}>
+            <Button
+            variant="secondary">
+              Back to Labs
+            </Button>
+          </Link>
+            
+          
+          <Button
+            float="right"
+            variant="lab"
+            onClick={routeNext}
+            disabled={labIndex == numLabs - 1 ? true : false}>
+            Next
+          </Button>
+        </Box>
+  
+        <Text variant='primary'align="right" mr='10%' pt="20px">
+          {labIndex + 1} / {numLabs}
+        </Text>
+        <Box width='100%' display='flex' justifyContent='center'>
+          <Box width='50%' className="default">{lab}</Box>
+        </Box>
+        {labIndex == numLabs - 1 ?  <Text fontSize="3xl" fontWeight="bold" align="center">Congratulations on finishing Lab {labIndex + 1}!</Text> : <></>}
+        <Box pt="40px" display='flex' justifyContent='space-around'>
+          
+          <Link href={'/unit'+props.unit} style={{ textDecoration: 'none' }}>
+            <Button
+            variant="secondary">
+              Back to Labs
+            </Button>
+          </Link>
+            
+          
+          <Button
+            float="right"
+            variant="lab"
+            onClick={routeNext}
+            disabled={labIndex == numLabs - 1 ? true : false}>
+            Next
+          </Button>
+        </Box>
+      </Box>
+    );
+  }
+  
+  else if(labIndex == numLabs-1 && props.lab < props.numLabsInUnit) {
+    return (
+      <Box
       style={{
         backgroundColor: '#121212',
         color: 'white',
@@ -99,9 +168,30 @@ const LabPage = (props: LabPageProps) => {
       pt="50px"
       pb="50px"
       bgImage={Gradient}>
+      
+
       <Box display='flex' justifyContent='center'>
         <ProgressBar progress={progress} />
       </Box>
+      
+      <Box pt="40px" display='flex' justifyContent='space-around'>
+        <Button
+          variant="secondary"
+          disabled={labIndex == 0 ? true : false}
+          onClick={routePrev}>
+          Back
+        </Button>
+        
+        <Link href={'/unit'+props.unit+'/lab'+(props.lab+1)} style={{ textDecoration: 'none' }}>
+          <Button
+            float="right"
+            variant="lab"
+            >
+            Next Lab
+          </Button>
+        </Link>
+      </Box>
+
       <Text variant='primary'align="right" mr='10%' pt="20px">
         {labIndex + 1} / {numLabs}
       </Text>
@@ -118,14 +208,74 @@ const LabPage = (props: LabPageProps) => {
         </Button>
         <Button
           float="right"
-          variant="primary"
+          variant="lab"
           onClick={routeNext}
           disabled={labIndex == numLabs - 1 ? true : false}>
           Next
         </Button>
       </Box>
     </Box>
-  );
+    );
+  }
+  else {
+  return (
+    <Box
+      style={{
+        backgroundColor: '#121212',
+        color: 'white',
+      }}
+      minHeight="80vh"
+      pl="100px"
+      pr="100px"
+      pt="50px"
+      pb="50px"
+      bgImage={Gradient}>
+      
+
+      <Box display='flex' justifyContent='center'>
+        <ProgressBar progress={progress} />
+      </Box>
+      
+      <Box pt="40px" display='flex' justifyContent='space-around'>
+        <Button
+          variant="secondary"
+          disabled={labIndex == 0 ? true : false}
+          onClick={routePrev}>
+          Back
+        </Button>
+        <Button
+          float="right"
+          variant="lab"
+          onClick={routeNext}
+          disabled={labIndex == numLabs - 1 ? true : false}>
+          Next
+        </Button>
+      </Box>
+
+      <Text variant='primary'align="right" mr='10%' pt="20px">
+        {labIndex + 1} / {numLabs}
+      </Text>
+      <Box width='100%' display='flex' justifyContent='center'>
+        <Box width='50%' className="default">{lab}</Box>
+      </Box>
+      {labIndex == numLabs - 1 ?  <Text fontSize="3xl" fontWeight="bold" align="center">Congratulations on finishing Lab {labIndex + 1}!</Text> : <></>}
+      <Box pt="40px" display='flex' justifyContent='space-around'>
+        <Button
+          variant="secondary"
+          disabled={labIndex == 0 ? true : false}
+          onClick={routePrev}>
+          Back
+        </Button>
+        <Button
+          float="right"
+          variant="lab"
+          onClick={routeNext}
+          disabled={labIndex == numLabs - 1 ? true : false}>
+          Next
+        </Button>
+      </Box>
+    </Box>
+  );}
 };
 
 export default LabPage;

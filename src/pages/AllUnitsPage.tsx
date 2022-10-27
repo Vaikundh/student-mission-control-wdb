@@ -42,25 +42,27 @@ const AllUnitsPage = () => {
             { unitsArr.map((val) => {
             return (
                 <>
-                <Box mt='2%' bg='smcblack' w='20%' h='420px' borderRadius='lg' mr="5%" border='solid' borderColor="smclightblue" boxShadow="xl"
-                _hover={{ 
-                  bg: 'smcdarkblue',
-              }}
-              _active={{
-                  bg: 'smcdarkgrey',
-                  transform: 'scale(0.98)',
-                  borderBottomColor: 'smclightblue',
+                <Button mt='2%' bg='smcblack' w='20%' h='420px' borderRadius='lg' mr="5%" border='solid' borderColor="smclightblue" boxShadow="xl"
+                color='smclightblue'
+                  _hover={{ 
+                    bg: 'smcdarkblue',
+                    color: 'smcwhite',
+                    textShadow: '0 0 10px #91D8F6'
+                  }}
+                  _active={{
+                      bg: 'smcblack',
+                      transform: 'scale(0.98)',
+                      borderBottomColor: 'smclightblue',
 
-              }}>
+                  }}
+                  onClick={() => nav(val)} >
                   <VStack spacing='80px'>
                     <Image mt='20%' src={"images/Unit" + val + ".svg"} />
-                    <Button variant="primary" mt='280px' fontSize='22' w='90%' h='78px' backgroundColor='smcdarkgrey' color='#FFFFFF' onClick={() => nav(val)} >
-                        <Text variant='BodyLarge'>
-                          Unit { val }
-                        </Text>
-                    </Button>
+                      <Text variant='BodyLarge'>
+                        Unit { val }
+                      </Text>
                   </VStack>
-                </Box>
+                </Button>
                 </>
             )
             })

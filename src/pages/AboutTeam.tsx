@@ -61,16 +61,6 @@ const ISS = [{
     "role": "Principal Investigator, Teaching Professor @ Berkeley",
     "contact": "sthorstensen@issnationallab.org"
   }, {
-    "pic": "lauren_mock",
-    "name": "Lauren Mock",
-    "role": "BJC Project Manager",
-    "contact": "lmock@berkeley.edu"
-  }, {
-    "pic": "default",
-    "name": "Shirley Wu",
-    "role": "Data Visualization Lead",
-    "contact": "dkowaleuski@issnationallab.org"
-  }, {
     "pic": "josh_hug",
     "name": "Josh Hug",
     "role": "Teaching Professor @ Berkeley, Data Science expert",
@@ -80,6 +70,16 @@ const ISS = [{
     "name": "Michael Ball",
     "role": "Lecturer @ Berkeley, Data Science and API expert",
     "contact": "yugesiw@earthlink.net"
+  }, {
+    "pic": "lauren_mock",
+    "name": "Lauren Mock",
+    "role": "BJC Project Manager",
+    "contact": "lmock@berkeley.edu"
+  },  {
+    "pic": "default",
+    "name": "Buzz Aldrin",
+    "role": "Curriculum Author",
+    "contact": "buzzaldrin@berkeley.edu"
   }];
 
   const wdb = [{

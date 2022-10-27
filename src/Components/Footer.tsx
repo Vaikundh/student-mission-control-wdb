@@ -42,35 +42,31 @@ const Footer = () => {
             </Link> 
           </Stack>
           <Stack align={'flex-start'}>
-            <Text variant="FootnoteBold"> Home </Text>
-            <Link variant="footer" href={'#'}>
-              About Us
-            </Link>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footerBold" href={'/'}> Home </Link>
+            <Link variant="footer" href={'about_project'}>
               The Project
             </Link>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footer" href={'about_team'}>
               The Team
             </Link>
           </Stack>
           <Stack align={'flex-start'}>
-            <Text variant="FootnoteBold"> Curriculum </Text>
-            <Link variant="footer" href={'#'}>
-              Table of Contents
-            </Link>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footerBold" href={'/units'}> Curriculum </Link>
+            <Link variant="footer" href={'/units'}>
               For Students
             </Link>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footer" href={'/units'}>
               For teachers
             </Link>
           </Stack>
           <Stack align={'flex-start'}>
-            <Text variant="FootnoteBold"> Resources </Text>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footerBold" href={'/resources'}> 
+              Resources 
+            </Link>
+            <Link variant="footer" href={'/'}>
               Live Data
             </Link>
-            <Link variant="footer" href={'#'}>
+            <Link variant="footer" href={'/contact'}>
               Contact Us
             </Link>
           </Stack>

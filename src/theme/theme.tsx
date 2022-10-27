@@ -93,7 +93,7 @@ const theme = extendTheme({
         BodyLarge:{
           fontSize: '25px',
           fontStyle: 'normal',
-          fontWeight: '400',
+          fontWeight: '300',
           fontFamily: 'Sen',
         },
         Footnote: {
@@ -157,7 +157,46 @@ const theme = extendTheme({
             bg: '#001A33',
           },
         },
+        unit: {
+          color: 'smclightblue',
+          bg: 'smcblack',
+          _hover: {
+            bg: 'smcdarkblue',
+            color: 'smcwhite',
+            textShadow: '0 0 10px #91D8F6'
+          },
 
+          _active: {
+            bg: '#FFFFFF',
+            color: '#91D8F6',
+            boxShadow: 'pressed',
+          },
+
+          _focus: {
+            boxShadow: 'blueBorder',
+            bg: '#001A33',
+          },
+        },
+        lab: {
+          color: 'smclightblue',
+          bg: 'smcdarkblue',
+          _hover: {
+            bg: 'smcdarkblue',
+            color: 'smcwhite',
+            textShadow: '0 0 10px #91D8F6'
+          },
+
+          _active: {
+            bg: '#FFFFFF',
+            color: '#91D8F6',
+            boxShadow: 'pressed',
+          },
+
+          _focus: {
+            boxShadow: 'blueBorder',
+            bg: '#001A33',
+          },
+        },
         secondary: {
           color: '#DDDDDD',
           boxShadow: 'grayBorder',
@@ -188,6 +227,13 @@ const theme = extendTheme({
           fontSize: '13px',
           fontStyle: 'normal',
           fontWeight: '400',
+          fontFamily: 'Sen',
+        },
+        footerBold : {
+          color: "#fff",
+          fontSize: '13px',
+          fontStyle: 'normal',
+          fontWeight: '800',
           fontFamily: 'Sen',
         }
     },
