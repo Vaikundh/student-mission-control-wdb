@@ -25,6 +25,7 @@
     "react-hook-form": "^7.34.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
+    "react-sparklines": "^1.7.0",
     "sass": "^1.51.0",
     "three": "^0.139.2",
     "three-globe": "^2.24.3",
@@ -32,6 +33,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@types/react-sparklines": "^1.7.2",
     "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",

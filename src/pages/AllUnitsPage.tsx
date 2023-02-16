@@ -28,7 +28,7 @@ const AllUnitsPage = () => {
     };
 
     const nav = (unit : number) => {
-        const s = '/unit' + unit
+        const s = '/expedition' + unit
         navigate(s);
     }
   
@@ -59,7 +59,7 @@ const AllUnitsPage = () => {
                   <VStack spacing='80px'>
                     <Image mt='20%' src={"images/Unit" + val + ".svg"} />
                       <Text variant='BodyLarge'>
-                        Unit { val }
+                        Expedition { val }
                       </Text>
                   </VStack>
                 </Button>

@@ -100,9 +100,9 @@ const Globey = () => {
       currentWorld.scene().add(clouds);
 
       (function rotateClouds() {
-        clouds.rotation.x += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
-        clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
-        clouds.rotation.z += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
+        clouds.rotation.x = 0;
+        clouds.rotation.y = 0;
+        clouds.rotation.z = 0;
         requestAnimationFrame(rotateClouds);
       })();
     });
