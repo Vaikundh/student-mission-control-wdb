@@ -17,7 +17,7 @@ const NavBar = () => {
                 </Box>
                 <Spacer /> 
                 <Flex>
-                    <Dropdown label="Curriculum" items={[['Home', '/units'], ['For Students', '/units'], ['For Teachers', '/units']]} w='145px'></Dropdown>
+                    <Dropdown label="Curriculum" items={[['Home', '/expeditions'], ['For Students', '/expeditions'], ['For Teachers', '/expeditions']]} w='145px'></Dropdown>
                     <Dropdown label="About" items={[['Project', '/about_project'], ['Team', '/about_team']]} w='105px'></Dropdown>
                     <NavButton label="Live Data" link="/"></NavButton>
                     <NavButton label="Resources" link="/resources"></NavButton>
