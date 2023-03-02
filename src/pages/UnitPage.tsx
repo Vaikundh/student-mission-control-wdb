@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import Gradient from '../Assets/Gradients/unitgradient.svg'
 import { useGeometryData, useEnergyData } from '../utils/hooks';
+
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
 
 interface UnitPageProps {
@@ -14,10 +15,11 @@ const UnitPage = (props: UnitPageProps) => {
   const navigate = useNavigate();
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
+
   const [currentData, setCurrentData] = useState([300] as number[])
 
 
-//   useEffect(() =>  {
+
   // localStorage.setItem("currentData", JSON.stringify([0] as number[]))
 
   useEffect(() => {
@@ -63,7 +65,9 @@ const UnitPage = (props: UnitPageProps) => {
     //   + useEnergyData().S6000002 
     //   + useEnergyData().P4000005 
     //   + useEnergyData().P6000002])));
+
     const a = currentData;
+
     // if (a[a.length - 1] != useEnergyData().S4000002 
     // + useEnergyData().S6000005 
     // + useEnergyData().P4000002 
@@ -91,6 +95,7 @@ const UnitPage = (props: UnitPageProps) => {
       // }
     })
     
+
 
 
     // console.log(JSON.parse(localStorage.currentData));
@@ -180,6 +185,7 @@ const UnitPage = (props: UnitPageProps) => {
             <SparklinesReferenceLine type="mean"/>
           </Sparklines>
         </Flex>
+
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
             _hover={{
@@ -196,6 +202,7 @@ const UnitPage = (props: UnitPageProps) => {
         
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
+
           Current-All: {getCurrentAll()*-1} Amps
         </Text>
   
