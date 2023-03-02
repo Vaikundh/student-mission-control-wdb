@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import Gradient from '../Assets/Gradients/unitgradient.svg'
 import { useGeometryData, useEnergyData } from '../utils/hooks';
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
+import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
 
 interface UnitPageProps {
   unit: number;
@@ -14,13 +14,10 @@ const UnitPage = (props: UnitPageProps) => {
   const navigate = useNavigate();
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
-  const [currentData, setCurrentData] = useState([10] as number[])
+  const [currentData, setCurrentData] = useState([300] as number[])
 
 
 //   useEffect(() =>  {
-//     getCurrentAll, [currentData])
-// };
-//   const onCurrentData = ({ target }) => setValue(target.value);
   // localStorage.setItem("currentData", JSON.stringify([0] as number[]))
 
   useEffect(() => {
@@ -66,8 +63,7 @@ const UnitPage = (props: UnitPageProps) => {
     //   + useEnergyData().S6000002 
     //   + useEnergyData().P4000005 
     //   + useEnergyData().P6000002])));
-    let a = [];
-    a = currentData;
+    const a = currentData;
     // if (a[a.length - 1] != useEnergyData().S4000002 
     // + useEnergyData().S6000005 
     // + useEnergyData().P4000002 
@@ -85,10 +81,16 @@ const UnitPage = (props: UnitPageProps) => {
       + useEnergyData().P4000005 
       + useEnergyData().P6000002);
     // }
-    console.log(a)
-    if (currentData[currentData.length - 1] !== a[a.length - 1]) {
-      setCurrentData(a);
-    }
+    
+    useEffect(()=> {
+        // if (currentData.length !== a.length) {
+        
+        const a = currentData.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+        // console.log(a);
+        setCurrentData(a);
+      // }
+    })
+    
 
 
     // console.log(JSON.parse(localStorage.currentData));
@@ -171,6 +173,13 @@ const UnitPage = (props: UnitPageProps) => {
     {/* Energy */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
+        <Flex alignItems='center' height='30%' width='50%' ml='40%' position='absolute'>
+          <Sparklines data={currentData.filter((value, index, array) => value > 300)} limit={50}>
+            <SparklinesLine style={{ fill: "none" }} color="#91D8F6"/>
+            <SparklinesSpots />
+            <SparklinesReferenceLine type="mean"/>
+          </Sparklines>
+        </Flex>
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
             _hover={{
@@ -187,14 +196,9 @@ const UnitPage = (props: UnitPageProps) => {
         
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
-          Current-All: {getCurrentAll()} Amps
+          Current-All: {getCurrentAll()*-1} Amps
         </Text>
   
-        {}
-        <Sparklines data={currentData} limit={5}>
-          <SparklinesLine style={{ fill: "none" }} />
-          <SparklinesSpots />
-        </Sparklines>
         
   
         <Flex direction="row" pl="230px">
