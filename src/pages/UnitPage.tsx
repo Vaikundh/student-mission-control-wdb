@@ -6,6 +6,7 @@ import Gradient from '../Assets/Gradients/unitgradient.svg'
 import { useGeometryData, useEnergyData } from '../utils/hooks';
 
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
+
 import SparklineBox from '../Components/SparklineBox';
 
 interface UnitPageProps {
@@ -16,12 +17,14 @@ const UnitPage = (props: UnitPageProps) => {
   const navigate = useNavigate();
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
+
   // GEOMETRY
   const [currentData, setCurrentData] = useState([300] as number[])
   // ENERGY
   const [yaw, setYaw] = useState([-10, 10] as number[])
   const [pitch, setPitch] = useState([-10, 10] as number[])
   const [roll, setRoll] = useState([-10, 10] as number[])
+
 
 
   useEffect(() => {
@@ -66,9 +69,11 @@ const UnitPage = (props: UnitPageProps) => {
   };
 
   const getCurrentAll = () => {
+
     const a = currentData;
   
     a.push(truncate((useEnergyData().S4000002 
+
       + useEnergyData().S6000005 
       + useEnergyData().P4000002 
       + useEnergyData().P6000005 
@@ -80,6 +85,7 @@ const UnitPage = (props: UnitPageProps) => {
     
     useEffect(()=> {
         // if (currentData.length !== a.length) {
+
         const a = currentData.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
         // const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
         
@@ -92,6 +98,7 @@ const UnitPage = (props: UnitPageProps) => {
     })
     
     return truncate((useEnergyData().S4000002 
+
     + useEnergyData().S6000005 
     + useEnergyData().P4000002 
     + useEnergyData().P6000005 
@@ -249,8 +256,10 @@ const UnitPage = (props: UnitPageProps) => {
     {/* Energy */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
+
         <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
           <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={75} y_min={300} y_max={450} />
+
         </Flex>
 
         <Box pt="100px" pl="140px">
@@ -269,7 +278,9 @@ const UnitPage = (props: UnitPageProps) => {
         
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
+
           Current-All: {truncate(getCurrentAll()*-1,2)} Amps
+
         </Text>
   
         
