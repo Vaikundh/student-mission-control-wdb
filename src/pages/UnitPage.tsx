@@ -18,9 +18,9 @@ const UnitPage = (props: UnitPageProps) => {
   // GEOMETRY
   const [currentData, setCurrentData] = useState([300] as number[])
   // ENERGY
-  const [yaw, setYaw] = useState([] as number[])
-  const [pitch, setPitch] = useState([] as number[])
-  const [roll, setRoll] = useState([] as number[])
+  const [yaw, setYaw] = useState([-10, 10] as number[])
+  const [pitch, setPitch] = useState([-10, 10] as number[])
+  const [roll, setRoll] = useState([-10, 10] as number[])
 
 
   useEffect(() => {
@@ -62,37 +62,42 @@ const UnitPage = (props: UnitPageProps) => {
         truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
 
     return truncatedNum / multiplier;
-};
+  };
+
   const getCurrentAll = () => {
     const a = currentData;
   
-    a.push(useEnergyData().S4000002 
+    a.push(truncate((useEnergyData().S4000002 
       + useEnergyData().S6000005 
       + useEnergyData().P4000002 
       + useEnergyData().P6000005 
       + useEnergyData().S4000005 
       + useEnergyData().S6000002 
       + useEnergyData().P4000005 
-      + useEnergyData().P6000002);
+      + useEnergyData().P6000002),2));
     // }
     
     useEffect(()=> {
         // if (currentData.length !== a.length) {
-        
         const a = currentData.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-        setCurrentData(a.slice(a.length-75));
+        // const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
+        
+        setCurrentData(a.slice(a.length-300));
         console.log(currentData);
+        // return () => {
+        //   clearInterval(id);
+        // };
       // }
     })
     
-    return useEnergyData().S4000002 
+    return truncate((useEnergyData().S4000002 
     + useEnergyData().S6000005 
     + useEnergyData().P4000002 
     + useEnergyData().P6000005 
     + useEnergyData().S4000005 
     + useEnergyData().S6000002 
     + useEnergyData().P4000005 
-    + useEnergyData().P6000002
+    + useEnergyData().P6000002),2);
   }
 
   const getGeoYaw = () => {
@@ -107,9 +112,24 @@ const UnitPage = (props: UnitPageProps) => {
     useEffect(()=> {
         // if (currentData.length !== a.length) {
         
-        const a = yaw //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-        setYaw(a.slice(a.length-50));
+        // const a = yaw; //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+        
+        // // console.log(yaw);
+        // const id = setInterval(() => setYaw(a.slice(a.length-50)), 3000);
+        
+        // // setCurrentData(a.slice(a.length-75));
         // console.log(yaw);
+        // // return () => {
+        // //   clearInterval(id);
+        // // };
+        const a = yaw;
+        const id = setInterval(() => setYaw(a.slice(a.length-75)), 1500);
+        
+        // setCurrentData(a.slice(a.length-75));
+        console.log(yaw);
+        return () => {
+          clearInterval(id);
+        };
       // }
     })
     
@@ -153,7 +173,7 @@ const UnitPage = (props: UnitPageProps) => {
         
         const a = roll //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
         setRoll(a.slice(a.length-50));
-        // console.log(yaw);
+        // console.log(roll);
       // }
     })
     
@@ -167,6 +187,11 @@ const UnitPage = (props: UnitPageProps) => {
     {/* GEOMETRY */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
+        <Flex direction='column' alignItems='center' height='30%' width='50%' ml='58%' mt='1%' position='absolute'>
+          <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw} data_limit={25} y_min={-10} y_max={10} />
+          <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch} data_limit={25} y_min={-10} y_max={10} />
+          <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll} data_limit={25} y_min={-10} y_max={10} />
+        </Flex>
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
             _hover={{
@@ -192,13 +217,6 @@ const UnitPage = (props: UnitPageProps) => {
         <Text color="#FFFFFF" pt="20px" pl="230px">
           Roll: {getGeoRoll()}°
         </Text>
-  
-  
-        {/* <Sparklines data={useRollData()} limit={20 }>
-          <SparklinesLine style={{ fill: "none" }} />
-          <SparklinesSpots />
-        </Sparklines> */}
-        {/* {useRollData()} */}
   
         <Flex direction="row" pl="230px">
           {labsArr.map((val) => {
@@ -230,8 +248,8 @@ const UnitPage = (props: UnitPageProps) => {
     {/* Energy */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
-        <Flex alignItems='center' height='30%' width='50%' ml='40%' position='absolute'>
-          <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={25} y_min={300} y_max={450} />
+        <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
+          <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={75} y_min={300} y_max={450} />
         </Flex>
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}

@@ -16,7 +16,7 @@ interface SparklineProps {
 
 const SparklineBox = (props: SparklineProps) => {
     return(
-        <Flex height={props.graph_height} width={props.graph_width+10} borderRadius='10' bgGradient="linear(to-br, smcblack, smcdarkblue)">
+        <Flex height={props.graph_height} width={props.graph_width+10} borderRadius='10' bgGradient="linear(to-br, smcblack, smcdarkblue)" margin='5px' pr='15px' pl='15px'>
             <Flex direction='column' justifyContent='space-between' h={props.graph_height-5} mt='2.5px'>
                 <Text color='smcwhite'>{props.y_max +'(' + props.units+')'}</Text>
                 <Text color='smcwhite'>{props.y_min +'(' + props.units+')'}</Text>
