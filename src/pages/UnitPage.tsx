@@ -7,6 +7,8 @@ import { useGeometryData, useEnergyData } from '../utils/hooks';
 
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
 
+import SparklineBox from '../Components/SparklineBox';
+
 interface UnitPageProps {
   unit: number;
 }
@@ -16,11 +18,14 @@ const UnitPage = (props: UnitPageProps) => {
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
 
+  // GEOMETRY
   const [currentData, setCurrentData] = useState([300] as number[])
+  // ENERGY
+  const [yaw, setYaw] = useState([-10, 10] as number[])
+  const [pitch, setPitch] = useState([-10, 10] as number[])
+  const [roll, setRoll] = useState([-10, 10] as number[])
 
 
-
-  // localStorage.setItem("currentData", JSON.stringify([0] as number[]))
 
   useEffect(() => {
     getNumLabs();
@@ -55,66 +60,146 @@ const UnitPage = (props: UnitPageProps) => {
     navigate('/expeditions');
   };
 
+  const truncate = function (value: number, num_digits: number) {
+    const multiplier = Math.pow(10, num_digits),
+        adjustedNum = value * multiplier,
+        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+    return truncatedNum / multiplier;
+  };
+
   const getCurrentAll = () => {
-    // localStorage.currentData = (JSON.stringify(JSON.parse(localStorage.currentData).push(
-    //   [useEnergyData().S4000002 
-    //   + useEnergyData().S6000005 
-    //   + useEnergyData().P4000002 
-    //   + useEnergyData().P6000005 
-    //   + useEnergyData().S4000005 
-    //   + useEnergyData().S6000002 
-    //   + useEnergyData().P4000005 
-    //   + useEnergyData().P6000002])));
 
     const a = currentData;
+  
+    a.push(truncate((useEnergyData().S4000002 
 
-    // if (a[a.length - 1] != useEnergyData().S4000002 
-    // + useEnergyData().S6000005 
-    // + useEnergyData().P4000002 
-    // + useEnergyData().P6000005 
-    // + useEnergyData().S4000005 
-    // + useEnergyData().S6000002 
-    // + useEnergyData().P4000005 
-    // + useEnergyData().P6000002) {
-    a.push(useEnergyData().S4000002 
       + useEnergyData().S6000005 
       + useEnergyData().P4000002 
       + useEnergyData().P6000005 
       + useEnergyData().S4000005 
       + useEnergyData().S6000002 
       + useEnergyData().P4000005 
-      + useEnergyData().P6000002);
+      + useEnergyData().P6000002),2));
     // }
     
     useEffect(()=> {
         // if (currentData.length !== a.length) {
-        
+
         const a = currentData.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-        // console.log(a);
-        setCurrentData(a);
+        // const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
+        
+        setCurrentData(a.slice(a.length-300));
+        console.log(currentData);
+        // return () => {
+        //   clearInterval(id);
+        // };
       // }
     })
     
+    return truncate((useEnergyData().S4000002 
 
-
-
-    // console.log(JSON.parse(localStorage.currentData));
-    return useEnergyData().S4000002 
     + useEnergyData().S6000005 
     + useEnergyData().P4000002 
     + useEnergyData().P6000005 
     + useEnergyData().S4000005 
     + useEnergyData().S6000002 
     + useEnergyData().P4000005 
-    + useEnergyData().P6000002
+    + useEnergyData().P6000002),2);
   }
 
-  // const getCurrentData = () => {}
+  const getGeoYaw = () => {
+    const a = yaw;
+  
+    a.push(truncate((Math.atan2(2.0*(useGeometryData().Rx*useGeometryData().Ry 
+    + useGeometryData().Rw*useGeometryData().Rz), useGeometryData().Rw*useGeometryData().Rw 
+    + useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
+    - useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI), 3));
+    // }
+    
+    useEffect(()=> {
+        // if (currentData.length !== a.length) {
+        
+        // const a = yaw; //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+        
+        // // console.log(yaw);
+        // const id = setInterval(() => setYaw(a.slice(a.length-50)), 3000);
+        
+        // // setCurrentData(a.slice(a.length-75));
+        // console.log(yaw);
+        // // return () => {
+        // //   clearInterval(id);
+        // // };
+        const a = yaw;
+        const id = setInterval(() => setYaw(a.slice(a.length-75)), 1500);
+        
+        // setCurrentData(a.slice(a.length-75));
+        console.log(yaw);
+        return () => {
+          clearInterval(id);
+        };
+      // }
+    })
+    
+    return truncate((Math.atan2(2.0*(useGeometryData().Rx*useGeometryData().Ry 
+    + useGeometryData().Rw*useGeometryData().Rz), useGeometryData().Rw*useGeometryData().Rw 
+    + useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
+    - useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI), 3);
+  }
+  
+  const getGeoPitch = () => {
+    const a = pitch;
+  
+    a.push(truncate((Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz 
+    - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI),3));
+    // }
+    
+    useEffect(()=> {
+        // if (currentData.length !== a.length) {
+        
+        const a = pitch //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+        setPitch(a.slice(a.length-50));
+        // console.log(yaw);
+      // }
+    })
+    
+    return truncate((Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz 
+    - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI),3);
+  }
+
+  const getGeoRoll = () => {
+    const a = roll;
+  
+    a.push(truncate((Math.atan2(2.0*(useGeometryData().Ry*useGeometryData().Rz 
+    + useGeometryData().Rw*useGeometryData().Rx), useGeometryData().Rw*useGeometryData().Rw 
+    - useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
+    + useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI),3));
+    // }
+    
+    useEffect(()=> {
+        // if (currentData.length !== a.length) {
+        
+        const a = roll //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+        setRoll(a.slice(a.length-50));
+        // console.log(roll);
+      // }
+    })
+    
+    return truncate((Math.atan2(2.0*(useGeometryData().Ry*useGeometryData().Rz 
+    + useGeometryData().Rw*useGeometryData().Rx), useGeometryData().Rw*useGeometryData().Rw 
+    - useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
+    + useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI),3);
+  }
 
   if (props.unit === 1){
     {/* GEOMETRY */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
+        <Flex direction='column' alignItems='center' height='30%' width='50%' ml='58%' mt='1%' position='absolute'>
+          <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw} data_limit={25} y_min={-10} y_max={10} />
+          <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch} data_limit={25} y_min={-10} y_max={10} />
+          <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll} data_limit={25} y_min={-10} y_max={10} />
+        </Flex>
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
             _hover={{
@@ -130,23 +215,16 @@ const UnitPage = (props: UnitPageProps) => {
         </Text>
   
         <Text color="#FFFFFF" pt="20px" pl="230px">
-          Yaw: {(Math.atan2(2.0*(useGeometryData().Rx*useGeometryData().Ry + useGeometryData().Rw*useGeometryData().Rz), useGeometryData().Rw*useGeometryData().Rw + useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry - useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI)}°
+          Yaw: {getGeoYaw()}°
         </Text>
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
-          Pitch: {(Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI)}°
+          Pitch: {getGeoPitch()}°
         </Text>
   
         <Text color="#FFFFFF" pt="20px" pl="230px">
-          Roll: {(Math.atan2(2.0*(useGeometryData().Ry*useGeometryData().Rz + useGeometryData().Rw*useGeometryData().Rx), useGeometryData().Rw*useGeometryData().Rw - useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry + useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI)}°
+          Roll: {getGeoRoll()}°
         </Text>
-  
-  
-        {/* <Sparklines data={useRollData()} limit={20 }>
-          <SparklinesLine style={{ fill: "none" }} />
-          <SparklinesSpots />
-        </Sparklines> */}
-        {/* {useRollData()} */}
   
         <Flex direction="row" pl="230px">
           {labsArr.map((val) => {
@@ -178,12 +256,10 @@ const UnitPage = (props: UnitPageProps) => {
     {/* Energy */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
-        <Flex alignItems='center' height='30%' width='50%' ml='40%' position='absolute'>
-          <Sparklines data={currentData.filter((value, index, array) => value > 300)} limit={50}>
-            <SparklinesLine style={{ fill: "none" }} color="#91D8F6"/>
-            <SparklinesSpots />
-            <SparklinesReferenceLine type="mean"/>
-          </Sparklines>
+
+        <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
+          <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={75} y_min={300} y_max={450} />
+
         </Flex>
 
         <Box pt="100px" pl="140px">
@@ -203,7 +279,8 @@ const UnitPage = (props: UnitPageProps) => {
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
 
-          Current-All: {getCurrentAll()*-1} Amps
+          Current-All: {truncate(getCurrentAll()*-1,2)} Amps
+
         </Text>
   
         

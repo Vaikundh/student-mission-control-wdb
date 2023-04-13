@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Box, Flex} from '@chakra-ui/react';
 import Gradient from "../Assets/Gradients/unitgradient.svg"
+import SparklineBox from '../Components/SparklineBox';
 
 const Resources = () => {
   return (
@@ -42,10 +43,10 @@ const Resources = () => {
                 Example Projects
         </Text>
 
+        <SparklineBox title='Current-All' units='K' y_num_bins={5} graph_height={200} graph_width={500} data={[300,350,348,418,444,399,300,350,348,418,444,399,300,350,348,418,444,399,300,350,348,418,444,399,300, 300,350,348,418,444,399,300,350,348,418,444,399,300,350,348,418,444,399,300,350,348,418,444,399,300]} data_limit={50} y_min={300} y_max={450} />
+
         <Box height="200px"/>
 
-
-        
       </Flex>
     </div>
   );
