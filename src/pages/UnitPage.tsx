@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import Gradient from '../Assets/Gradients/unitgradient.svg'
 import { useGeometryData, useEnergyData } from '../utils/hooks';
+
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
 import SparklineBox from '../Components/SparklineBox';
 
@@ -251,6 +252,7 @@ const UnitPage = (props: UnitPageProps) => {
         <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
           <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={75} y_min={300} y_max={450} />
         </Flex>
+
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
             _hover={{
