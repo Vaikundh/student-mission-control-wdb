@@ -9,9 +9,9 @@ const LiveData = () => {
     // GEOMETRY
     const [currentData, setCurrentData] = useState([300] as number[])
     // ENERGY
-    const [yaw, setYaw] = useState([-10, 10] as number[])
-    const [pitch, setPitch] = useState([-10, 10] as number[])
-    const [roll, setRoll] = useState([-10, 10] as number[])
+    const [yaw, setYaw] = useState([] as number[])
+    const [pitch, setPitch] = useState([] as number[])
+    const [roll, setRoll] = useState([] as number[])
     const truncate = function (value: number, num_digits: number) {
         const multiplier = Math.pow(10, num_digits),
             adjustedNum = value * multiplier,
@@ -20,8 +20,8 @@ const LiveData = () => {
         return truncatedNum / multiplier;
       };
 
-    const getCurrentAll = () => {
-        const a = currentData;
+      const getCurrentAll = () => {
+        let a = currentData;
       
         a.push(truncate((useEnergyData().S4000002 
           + useEnergyData().S6000005 
@@ -35,27 +35,23 @@ const LiveData = () => {
         
         useEffect(()=> {
             // if (currentData.length !== a.length) {
-            const a = currentData.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-            // const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
+            a = a.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+            const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
             
-            setCurrentData(a.slice(a.length-300));
-            console.log(currentData);
-            // return () => {
-            //   clearInterval(id);
-            // };
+            // setCurrentData(b.slice(b.length-300));
+            // console.log(currentData);
+            return () => {
+              clearInterval(id);
+            };
           // }
         })
         
-        return truncate((useEnergyData().S4000002 
-        + useEnergyData().S6000005 
-        + useEnergyData().P4000002 
-        + useEnergyData().P6000005 
-        + useEnergyData().S4000005 
-        + useEnergyData().S6000002 
-        + useEnergyData().P4000005 
-        + useEnergyData().P6000002),2);
+        return a[a.length - 1];
       }
     
+      function onlyUnique(value: number, index: number, array: number[]) {
+        return array.indexOf(value) === index && value !== 0;
+      }
       const getGeoYaw = () => {
         const a = yaw;
       
@@ -78,8 +74,8 @@ const LiveData = () => {
             // // return () => {
             // //   clearInterval(id);
             // // };
-            const a = yaw;
-            const id = setInterval(() => setYaw(a.slice(a.length-75)), 1500);
+            
+            const id = setInterval(() => setYaw(a.filter(onlyUnique).slice(a.length-75)), 1500);
             
             // setCurrentData(a.slice(a.length-75));
             console.log(yaw);
@@ -89,10 +85,11 @@ const LiveData = () => {
           // }
         })
         
-        return truncate((Math.atan2(2.0*(useGeometryData().Rx*useGeometryData().Ry 
-        + useGeometryData().Rw*useGeometryData().Rz), useGeometryData().Rw*useGeometryData().Rw 
-        + useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
-        - useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI), 3);
+        // return truncate((Math.atan2(2.0*(useGeometryData().Rx*useGeometryData().Ry 
+        // + useGeometryData().Rw*useGeometryData().Rz), useGeometryData().Rw*useGeometryData().Rw 
+        // + useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
+        // - useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI), 3);
+        return a[a.length - 1]
       }
       
       const getGeoPitch = () => {
@@ -101,18 +98,24 @@ const LiveData = () => {
         a.push(truncate((Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz 
         - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI),3));
         // }
+        // }
         
+        
+    
         useEffect(()=> {
             // if (currentData.length !== a.length) {
             
-            const a = pitch //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-            setPitch(a.slice(a.length-50));
+            // const a = pitch //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+            const id = setInterval(() => setPitch(a.filter(onlyUnique).slice(a.length-75)), 1500);
+            // setPitch(a.filter(onlyUnique).slice(a.length-75));
+            return () => {
+              clearInterval(id);
+            };
             // console.log(yaw);
           // }
         })
-        
-        return truncate((Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz 
-        - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI),3);
+    
+        return a[a.length - 1];
       }
     
       const getGeoRoll = () => {
@@ -127,17 +130,20 @@ const LiveData = () => {
         useEffect(()=> {
             // if (currentData.length !== a.length) {
             
-            const a = roll //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
-            setRoll(a.slice(a.length-50));
+            // const a = roll //.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
+            // setRoll(a.slice(a.length-50));
+            const id = setInterval(() => setRoll(a.filter(onlyUnique).slice(a.length-75)), 1500);
+            // setPitch(a.filter(onlyUnique).slice(a.length-75));
+            return () => {
+              clearInterval(id);
+            };
             // console.log(roll);
           // }
         })
         
-        return truncate((Math.atan2(2.0*(useGeometryData().Ry*useGeometryData().Rz 
-        + useGeometryData().Rw*useGeometryData().Rx), useGeometryData().Rw*useGeometryData().Rw 
-        - useGeometryData().Rx*useGeometryData().Rx - useGeometryData().Ry*useGeometryData().Ry 
-        + useGeometryData().Rz*useGeometryData().Rz))*(180/Math.PI),3);
+        return a[a.length - 1];
       }
+    
 
 
     return (
@@ -146,31 +152,31 @@ const LiveData = () => {
             <Flex justifyContent='space-evenly' minWidth='60vw'>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 1: Geometry</Text>
-                    <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw} data_limit={25} y_min={-10} y_max={10} />
+                    <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} />
                     <Text color="smcwhite">
                         Yaw: {getGeoYaw()}°
                     </Text>
-                    <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch} data_limit={25} y_min={-10} y_max={10} />
+                    <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} />
                     <Text color="smcwhite">
                         Pitch: {getGeoPitch()}°
                     </Text>
-                    <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll} data_limit={25} y_min={-10} y_max={10} />
+                    <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value > 0)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/>
                     <Text color="smcwhite">
                         Roll: {getGeoRoll()}°
                     </Text>
                 </Flex>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 2: Energy</Text>
-                    <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 300)} data_limit={75} y_min={300} y_max={450} />
+                    <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} />
                     <Text color="smcwhite">
-                        Current: {getCurrentAll()} Amps
+                        Current: {getCurrentAll()*-1} Amps
                     </Text>
                 </Flex>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 3: Life Support</Text>
                     <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={[288, 285, 289, 283, 284, 290, 279]} data_limit={75} y_min={273} y_max={290} />
                     <Text color="smcwhite">
-                        Cabin Temperature: {getCurrentAll()} K
+                        Cabin Temperature: 288 K
                     </Text>
                 </Flex>
             </Flex>
