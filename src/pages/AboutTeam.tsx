@@ -77,9 +77,9 @@ const ISS = [{
     "contact": "lmock@berkeley.edu"
   },  {
     "pic": "default",
-    "name": "Buzz Aldrin",
+    "name": "Anirudhan Badrinath",
     "role": "Curriculum Author",
-    "contact": "buzzaldrin@berkeley.edu"
+    "contact": "abadrinath@berkeley.edu"
   }];
 
   const wdb = [{
