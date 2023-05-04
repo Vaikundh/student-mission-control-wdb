@@ -7,6 +7,7 @@ import { useGeometryData, useEnergyData } from '../utils/hooks';
 // import { useTimer } from 'react-timer-hook';
 
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesReferenceLine} from 'react-sparklines';
+
 import SparklineBox from '../Components/SparklineBox';
 
 interface UnitPageProps {
@@ -17,6 +18,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
   const navigate = useNavigate();
   const [numLabs, setNumLabs] = useState(0);
   const [labsArr, setLabsArr] = useState([] as number[]);
+
   // GEOMETRY
   const [currentData, setCurrentData] = useState([300] as number[])
   // ENERGY
@@ -70,6 +72,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
     let a = currentData;
   
     a.push(truncate((useEnergyData().S4000002 
+
       + useEnergyData().S6000005 
       + useEnergyData().P4000002 
       + useEnergyData().P6000005 
@@ -259,6 +262,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
     {/* Energy */}
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
+
         <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
           <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} />
         </Flex>
@@ -279,7 +283,9 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
         
         
         <Text color="#FFFFFF" pt="20px" pl="230px">
+
           Current-All: {truncate(getCurrentAll()*-1,2)} Amps
+
         </Text>
   
         
