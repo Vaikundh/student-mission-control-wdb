@@ -158,15 +158,15 @@ const LiveData = () => {
             <Flex justifyContent='space-evenly' minWidth='60vw'>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 1: Geometry</Text>
-                    <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} />
+                    {/* <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} /> */}
                     <Text color="smcwhite">
                         Yaw: {getGeoYaw()}°
                     </Text>
-                    <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} />
+                    {/* <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} /> */}
                     <Text color="smcwhite">
                         Pitch: {getGeoPitch()}°
                     </Text>
-                    <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value > 0)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/>
+                    {/* <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value > 0)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/> */}
 
                     <Text color="smcwhite">
                         Roll: {getGeoRoll()}°
@@ -174,14 +174,14 @@ const LiveData = () => {
                 </Flex>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 2: Energy</Text>
-                    <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} />
+                    {/* <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} /> */}
                     <Text color="smcwhite">
                         Current: {getCurrentAll()*-1} Amps
                     </Text>
                 </Flex>
                 <Flex direction='column' alignItems='center' width='20%'>
                     <Text variant='H4' pt="20px">Expedition 3: Life Support</Text>
-                    <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={[288, 285, 289, 283, 284, 290, 279]} data_limit={75} y_min={273} y_max={290} />
+                    {/* <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={[288, 285, 289, 283, 284, 290, 279]} data_limit={75} y_min={273} y_max={290} /> */}
                     <Text color="smcwhite">
                         Cabin Temperature: 288 K
                     </Text>

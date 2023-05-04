@@ -202,9 +202,9 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
       <Box minHeight="80vh" bgImage={Gradient}>
         <Flex direction='column' alignItems='center' height='30%' width='50%' ml='58%' mt='1%' position='absolute'>
 
-          <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} />
-          <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} />
-          <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value < 180)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/>
+          {/* <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} /> */}
+          {/* <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} /> */}
+          {/* <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value < 180)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/> */}
         </Flex>
         <Box pt="100px" pl="140px">
           <ArrowBackIcon role="img" cursor="pointer" focusable={true} onClick={goToUnits} color="smcwhite" boxSize={39}
@@ -268,7 +268,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
       <Box minHeight="80vh" bgImage={Gradient}>
 
         <Flex alignItems='center' height='30%' width='50%' ml='60%' mt='1%' position='absolute'>
-          <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} />
+          {/* <SparklineBox title='Current-All' units='A' y_num_bins={5} graph_height={200} graph_width={500} data={currentData.filter((value, index, array) => value > 350)} data_limit={75} y_min={truncate(Math.min.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} y_max={truncate(Math.max.apply(Math, currentData.filter((value, index, array) => value > 350)),1)} /> */}
         </Flex>
 
         <Box pt="100px" pl="140px">
