@@ -27,6 +27,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
   const [roll, setRoll] = useState([] as number[])
 
   
+
   useEffect(() => {
     getNumLabs();
   }, []);
@@ -168,6 +169,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
     return a[a.length - 1];
   }
 
+
   const getGeoRoll = () => {
     const a = roll;
   
@@ -199,6 +201,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
     return (
       <Box minHeight="80vh" bgImage={Gradient}>
         <Flex direction='column' alignItems='center' height='30%' width='50%' ml='58%' mt='1%' position='absolute'>
+
           <SparklineBox title='Yaw' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={yaw.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, yaw.filter((value, index, array) => value != 0)),3)} />
           <SparklineBox title='Pitch' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={pitch.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} y_max={truncate(Math.max.apply(Math, pitch.filter((value, index, array) => value != 0)),3)} />
           <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value < 180)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/>
@@ -220,6 +223,7 @@ const UnitPage = (props: UnitPageProps, expiryTimestamp: Date) => {
         <Text color="#FFFFFF" pt="20px" pl="230px">
           Yaw: {getGeoYaw()}°
           {/* Yaw: -4.019° */}
+
         </Text>
         
         <Text color="#FFFFFF" pt="20px" pl="230px">

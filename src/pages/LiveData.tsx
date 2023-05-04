@@ -9,9 +9,11 @@ const LiveData = () => {
     // GEOMETRY
     const [currentData, setCurrentData] = useState([300] as number[])
     // ENERGY
+
     const [yaw, setYaw] = useState([] as number[])
     const [pitch, setPitch] = useState([] as number[])
     const [roll, setRoll] = useState([] as number[])
+
     const truncate = function (value: number, num_digits: number) {
         const multiplier = Math.pow(10, num_digits),
             adjustedNum = value * multiplier,
@@ -22,6 +24,7 @@ const LiveData = () => {
 
       const getCurrentAll = () => {
         let a = currentData;
+
       
         a.push(truncate((useEnergyData().S4000002 
           + useEnergyData().S6000005 
@@ -35,6 +38,7 @@ const LiveData = () => {
         
         useEffect(()=> {
             // if (currentData.length !== a.length) {
+
             a = a.filter((value, index, array) => array.indexOf(value) === index).map(function(x) { return x * -1; });
             const id = setInterval(() => setCurrentData(a.slice(a.length-300)), 1500);
             
@@ -52,6 +56,7 @@ const LiveData = () => {
       function onlyUnique(value: number, index: number, array: number[]) {
         return array.indexOf(value) === index && value !== 0;
       }
+
       const getGeoYaw = () => {
         const a = yaw;
       
@@ -98,7 +103,6 @@ const LiveData = () => {
         a.push(truncate((Math.asin(-2.0*(useGeometryData().Rx*useGeometryData().Rz 
         - useGeometryData().Rw*useGeometryData().Ry)))*(180/Math.PI),3));
         // }
-        // }
         
         
     
@@ -137,6 +141,7 @@ const LiveData = () => {
             return () => {
               clearInterval(id);
             };
+
             // console.log(roll);
           // }
         })
@@ -144,6 +149,7 @@ const LiveData = () => {
         return a[a.length - 1];
       }
     
+
 
 
     return (
@@ -161,6 +167,7 @@ const LiveData = () => {
                         Pitch: {getGeoPitch()}°
                     </Text>
                     <SparklineBox title='Roll' units='°' y_num_bins={5} graph_height={200} graph_width={500} data={roll.filter(onlyUnique)} data_limit={25} y_min={truncate(Math.min.apply(Math, roll.filter((value, index, array) => value > 0)),3)} y_max={truncate(Math.max.apply(Math, roll.filter((value, index, array) => value != 0)),3)}/>
+
                     <Text color="smcwhite">
                         Roll: {getGeoRoll()}°
                     </Text>
